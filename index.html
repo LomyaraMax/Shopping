@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Список покупок</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+    h1 {
+      text-align: center;
+    }
+    #inputSection {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 60%;
+      max-width: 400px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    li {
+      background: #fff;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛒 Список покупок</h1>
+  <div id="inputSection">
+    <input type="text" id="itemInput" placeholder="Введите товар..." />
+    <button onclick="addItem()">Добавить</button>
+  </div>
+  <ul id="itemList"></ul>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBIM3ZzC-H4yqYAS6F0ONmamGEU2yJiTq0",
+      authDomain: "shopping-6b162.firebaseapp.com",
+      databaseURL: "https://shopping-6b162-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "shopping-6b162",
+      storageBucket: "shopping-6b162.firebasestorage.app",
+      messagingSenderId: "91005141152",
+      appId: "1:91005141152:web:c5f951bf20f604ac2e89c5"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const listRef = ref(db, 'shoppingList');
+
+    const itemInput = document.getElementById('itemInput');
+    const itemList = document.getElementById('itemList');
+
+    function addItem() {
+      const name = itemInput.value.trim();
+      if (name === '') return;
+      push(listRef, { name, done: false })
+        .then(() => {
+          itemInput.value = '';
+        })
+        .catch(err => console.error('Ошибка при добавлении товара:', err));
+    }
+
+    window.addItem = addItem;
+
+    onValue(listRef, snapshot => {
+      const data = snapshot.val();
+      itemList.innerHTML = '';
+      if (!data) return;
+      for (let id in data) {
+        const item = data[id];
+        const li = document.createElement('li');
+
+        const label = document.createElement('span');
+        label.textContent = item.name;
+        if (item.done) label.classList.add('done');
+        label.style.cursor = 'pointer';
+        label.title = "Нажмите, чтобы отметить как куплено";
+        label.onclick = () => {
+          update(ref(db, 'shoppingList/' + id), { done: !item.done })
+            .catch(err => console.error('Ошибка при обновлении:', err));
+        };
+
+        const delBtn = document.createElement('button');
+        delBtn.textContent = 'Удалить';
+        delBtn.title = "Удалить товар";
+        delBtn.onclick = () => {
+          remove(ref(db, 'shoppingList/' + id))
+            .catch(err => console.error('Ошибка при удалении:', err));
+        };
+
+        li.appendChild(label);
+        li.appendChild(delBtn);
+        itemList.appendChild(li);
+      }
+    });
+  </script>
+</body>
+</html>
