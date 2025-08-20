@@ -1,0 +1,187 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background: #f7f7f7;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  padding: 10px;
+}
+
+.header h1 {
+    font-size: 1rem;
+    color: black;
+    font-weight: 600;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  margin: 20px;
+}
+
+.main .container {
+  background-color: #EEEEEE;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-radius: 24px;
+}
+
+.main .history, .list {
+  width: 100%;
+  max-width: 600px;
+  background-color: #FFFFFF;
+  padding: 5px;
+  border-radius: 9px;
+}
+
+.main .history  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main .list {
+  text-align: center;
+}
+
+.main .history_btn {
+    background-color: #FFFFFF;
+    font-size: 0.87rem;
+    font-weight: 400;
+}
+
+.main .love {
+  background-color: #FFFFFF;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 9px;
+}
+
+.main .input-row input {
+  margin-top: 10px;
+  background-color: #FFFFFF;
+  padding: 15px;
+  border-radius: 9px;
+  width: 200px;
+  border: none;
+}
+
+.main #addBtn {
+    font-weight: 500;
+    font-size: 0.87rem;
+}
+
+.main .input-row button {
+  background-color: #202020;
+  padding: 10px;
+  border-radius: 9px;
+  color: #FFFFFF;
+  margin-left: 10px;
+}
+
+.list ol li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 8px 12px;
+  margin-bottom: 5px;
+  border-radius: 9px;
+}
+
+.list ol li button {
+  background: #FF4D4D;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.list h2 {
+    font-size: 0.87rem;
+    font-weight: 600;
+
+}
+
+.history_list {
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 9px;
+  padding: 10px;
+  width: 100%;
+}
+
+.history_list h2 {
+  text-align: center;
+  margin-bottom: 10px;
+
+}
+
+.history_items li {
+  background: #f2f2f2;
+  padding: 6px 10px;
+  margin: 4px 0;
+  border-radius: 6px;
+}
+
+.hidden {
+  display: none;
+}
+
+.close_history {
+  margin-top: 10px;
+  background: #202020;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 9px;
+  width: 100%;
+}
+
+
