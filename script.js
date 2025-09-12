@@ -11,7 +11,7 @@ const firebaseConfig = {
   appId: "1:91005141152:web:c5f951bf20f604ac2e89c5"
 };
 
-// Инициализация
+// Инициализация Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const listRef = ref(db, 'shoppingList');
@@ -39,7 +39,7 @@ addBtn.addEventListener('click', () => addEntry(listRef, itemInput));
 addTaskBtn.addEventListener('click', () => addEntry(tasksRef, taskInput));
 
 // Рендер списка с чекбоксами
-function renderList(refPath, container) {
+function renderList(refPath, container, type) {
   onValue(refPath, snapshot => {
     const data = snapshot.val();
     container.innerHTML = '';
@@ -60,7 +60,11 @@ function renderList(refPath, container) {
         if (checkbox.checked) {
           li.classList.add('fade-out');
           setTimeout(() => {
-            remove(ref(db, `${refPath._path.p.join('/')}/${id}`))
+            // Удаляем товар или дело из Firebase
+            const itemRef = type === 'Покупка'
+              ? ref(db, `shoppingList/${id}`)
+              : ref(db, `taskList/${id}`);
+            remove(itemRef)
               .catch(err => console.error('Ошибка при удалении:', err));
           }, 300);
         }
@@ -74,5 +78,5 @@ function renderList(refPath, container) {
 }
 
 // Запуск рендера
-renderList(listRef, itemList);
-renderList(tasksRef, taskList);
+renderList(listRef, itemList, 'Покупка');
+renderList(tasksRef, taskList, 'Дело');
