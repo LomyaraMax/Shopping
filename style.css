@@ -12,15 +12,8 @@ p, figure, blockquote, dl, dd {
   font-family: 'Inter', sans-serif;
 }
 
-html {
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-}
-
 body {
   min-height: 100dvh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
   background: #f7f7f7;
 }
 
@@ -50,9 +43,9 @@ button {
 }
 
 .header h1 {
-    font-size: 1rem;
-    color: black;
-    font-weight: 600;
+  font-size: 1rem;
+  font-weight: 600;
+  color: black;
 }
 
 .main {
@@ -61,47 +54,29 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: end;
-  margin: 20px;
-  position: fixed;
+  margin: 10px 3px;
   bottom: 0;
 }
 
 .main .container {
-  background-color: #EEEEEE;
-  padding: 15px;
+  background-color: #a4a4a4;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   border-radius: 24px;
+  border: solid 4px #3d3d3d;
+  
 }
 
-.main .history, .list {
+.list, .tasks {
   width: 100%;
   max-width: 600px;
   background-color: #FFFFFF;
   padding: 5px;
   border-radius: 9px;
-}
-
-.main .history  {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  /* padding-bottom: 30px; */
-}
-
-.main .list {
   text-align: center;
-}
-
-.main .history_btn {
-    background-color: #FFFFFF;
-    font-size: 0.87rem;
-    font-weight: 600;
-    color: #000;
-    width: 100%;
 }
 
 .main .love {
@@ -118,13 +93,8 @@ button {
   padding: 15px;
   border-radius: 9px;
   width: 200px;
-  border: none;
+  border: solid 1px #CCCCCC;
   font-size: 1rem;
-}
-
-.main #addBtn {
-    font-weight: 500;
-    font-size: 0.87rem;
 }
 
 .main .input-row button {
@@ -135,74 +105,32 @@ button {
   margin-left: 10px;
 }
 
-.list ol li {
+.list ol li, .tasks ol li {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   background: #fff;
   padding: 8px 12px;
   margin-bottom: 5px;
   border-radius: 9px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.list ol li button {
-  background: #FF4D4D;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 6px;
+.list ol li.fade-out, .tasks ol li.fade-out {
+  opacity: 0;
+  transform: translateX(50px);
 }
 
-.list h2 {
-    font-size: 0.87rem;
-    font-weight: 600;
-
+.checkbox {
+  margin-right: 10px;
 }
 
-#historyModal {
-  max-height: 45vh;
-  overflow: auto;
+h2 {
+  margin-bottom: 3px;
 }
 
-.close_history {
-  position: absolute;
-  bottom: 2px;
-  left: 0;
+section {
+  border: solid 2px #8b8b8bdc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8)  ;
 }
-
-.history_list {
-  margin-top: 10px;
-  background: #fff;
-  border-radius: 9px;
-  padding: 10px;
-  width: 100%;
-  padding-bottom: 33px;
-  
-}
-
-.history_list h2 {
-  text-align: center;
-  margin-bottom: 10px;
-
-}
-
-.history_items li {
-  background: #f2f2f2;
-  padding: 6px 10px;
-  margin: 4px 0;
-  border-radius: 6px;
-}
-
-.hidden {
-  display: none;
-}
-
-.close_history {
-  margin-top: 10px;
-  background: #202020;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 9px;
-  width: 100%;
-}
-
-
