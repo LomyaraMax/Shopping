@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Список покупок</title>
+  <title>Список покупок и дел</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,32 +14,33 @@
 <body>
   <div class="wrapper">
     <header class="header">
-      <h1>Покупки</h1>
+      <h1>Покупки и дела</h1>
     </header>
 
     <main class="main">
       <div class="container">
-        
-        <section class="history">
-          <button id="historyBtn" class="history_btn">История</button>
-          <div id="historyModal" class="history_list hidden">
-            <h2>История удалённых</h2>
-            <ul id="historyList" class="history_items"></ul>
-            <button id="closeHistory" class="close_history">Закрыть</button>
+
+        <!-- Дела -->
+        <section class="tasks">
+          <h2>Дела</h2>
+          <ol id="taskList"></ol>
+          <div class="input-row">
+            <input id="taskInput" type="text" placeholder="Деловые дела..." />
+            <button id="addTaskBtn" type="button">Добавить</button>
           </div>
         </section>
 
+        <!-- Покупки -->
         <section class="list">
-          <h2>Список</h2>
+          <h2>Список покупок</h2>
           <ol id="itemList"></ol>
+          <div class="input-row">
+            <input id="itemInput" type="text" placeholder="Новый товар..." />
+            <button id="addBtn" type="button">Добавить</button>
+          </div>
         </section>
 
         <section class="love">Настюшка ❤️ Максюшка</section>
-
-        <div class="input-row">
-          <input id="itemInput" type="text" placeholder="Ввод..." />
-          <button id="addBtn" type="button">Добавить</button>
-        </div>
 
       </div>
     </main>
