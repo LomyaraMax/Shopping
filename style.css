@@ -1,0 +1,140 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  min-height: 100dvh;
+  background: #f7f7f7;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  padding: 10px;
+}
+
+.header h1 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: black;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  margin: 10px 3px;
+  bottom: 0;
+  
+}
+
+.main .container {
+  background-color: #a4a4a4;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-radius: 24px;
+  border: solid 4px #3d3d3d;
+}
+
+.list, .tasks {
+  width: 100%;
+  max-width: 600px;
+  background-color: #FFFFFF;
+  padding: 5px;
+  border-radius: 9px;
+  text-align: center;
+}
+
+.main .love {
+  background-color: #ffbcaf;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 9px;
+}
+
+.main .input-row input {
+  margin-top: 10px;
+  background-color: #FFFFFF;
+  padding: 15px;
+  border-radius: 9px;
+  width: 200px;
+  border: solid 1px #CCCCCC;
+  font-size: 1rem;
+}
+
+.main .input-row button {
+  background-color: #202020;
+  padding: 10px;
+  border-radius: 9px;
+  color: #FFFFFF;
+  margin-left: 10px;
+}
+
+.list ol li, .tasks ol li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  background: #fbf2e1;
+  padding: 8px 12px;
+  margin-bottom: 5px;
+  border-radius: 9px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  border: solid 1px #aaaaaa80;
+}
+
+.list ol li.fade-out, .tasks ol li.fade-out {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.checkbox {
+  margin: 0px;
+  width: 14px;
+  height: 14px;
+}
+
+h2 {
+  margin-bottom: 3px;
+}
+
+section {
+  border: solid 2px #8b8b8bdc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8)  ;
+}
