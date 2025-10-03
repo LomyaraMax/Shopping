@@ -68,6 +68,7 @@ button {
   border: solid 4px #3d3d3d;
   max-width: 600px;
   width: 100%;
+  margi: 0 0 5px 0;
 }
 
 .list, .tasks {
@@ -144,5 +145,6 @@ section {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8)  ;
 
 }
+
 
 
