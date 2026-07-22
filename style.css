@@ -2,143 +2,207 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-body,
-h1, h2, h3, h4, h5, h6,
-p, figure, blockquote, dl, dd {
+body, h1, h2, h3, p, ol, ul {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
 }
 
 body {
-  background: #f7f7f7;
-}
-
-ul, ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-button {
-  cursor: pointer;
-  font: inherit;
-  border: none;
-  outline: none;
+  /* Тёплый фоновый цвет деревянного стола / уюта */
+  background: #2d241e;
+  background-image: radial-gradient(#3a2f28 1px, transparent 0);
+  background-size: 24px 24px;
+  min-height: 100vh;
+  font-family: 'Neucha', 'Comfortaa', cursive, sans-serif;
+  color: #2c221e;
+  padding: 20px 10px;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   align-items: center;
+  min-height: 100vh;
 }
 
 .header {
   text-align: center;
-  padding: 10px;
+  margin-bottom: 15px;
 }
 
 .header h1 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: black;
+  font-family: 'Caveat', cursive;
+  font-size: 2.4rem;
+  color: #f7e7ce;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .main {
-  flex: 1;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Лист жёлтой бумаги */
+.paper-container {
+  position: relative;
+  width: 100%;
+  /* Цвет классической желтоватой бумаги / стикера */
+  background-color: #fef3c7;
+  /* Легкие линейки как на линованной бумаге */
+  background-image: linear-gradient(#e5d5a1 1px, transparent 1px);
+  background-size: 100% 32px;
+  border-radius: 16px;
+  padding: 30px 20px 25px 45px;
+  /* Тёплая мягкая тень */
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.4),
+    inset 0 0 80px rgba(217, 178, 110, 0.3);
+  border: 1px solid #ebda9d;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: end;
-  margin: 10px 3px;
+  gap: 24px;
+  overflow: hidden;
+}
+
+/* Красная вертикальная линия полей */
+.margin-line {
+  position: absolute;
+  top: 0;
   bottom: 0;
-  
+  left: 36px;
+  width: 2px;
+  background-color: #f87171;
+  opacity: 0.6;
 }
 
-.main .container {
-  background-color: #a4a4a4;
-  padding: 10px;
+h2 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: #854d0e;
+  margin-bottom: 10px;
+  border-bottom: 2px dashed #eab308;
+  padding-bottom: 4px;
+}
+
+/* Списки элементов */
+.tasks ol, .list ol {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  border-radius: 24px;
-  border: solid 4px #3d3d3d;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
-.list, .tasks {
-  width: 100%;
-  max-width: 600px;
-  background-color: #FFFFFF;
-  padding: 5px;
-  border-radius: 9px;
-  text-align: center;
-}
-
-.main .love {
-  background-color: #ffbcaf;
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  border-radius: 9px;
-}
-
-.main .input-row {
-  display: flex;
-  align-items: center;
-}
-
-.main .input-row input {
-  background-color: #FFFFFF;
-  padding: 15px;
-  border-radius: 9px;
-  width: 200px;
-  border: solid 1px #CCCCCC;
-  font-size: 1rem;
-}
-
-.main .input-row button {
-  background-color: #202020;
-  padding: 10px;
-  border-radius: 9px;
-  color: #FFFFFF;
-  margin-left: 10px;
-  height: 50px;
-}
-
-.list ol li, .tasks ol li {
+.tasks ol li, .list ol li {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row-reverse;
-  background: #fbf2e1;
+  background: rgba(255, 255, 255, 0.55);
   padding: 8px 12px;
-  margin-bottom: 5px;
-  border-radius: 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(217, 178, 110, 0.5);
+  font-size: 1.25rem;
+  color: #3f2c1d;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  border: solid 1px #aaaaaa80;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.list ol li.fade-out, .tasks ol li.fade-out {
+.tasks ol li.fade-out, .list ol li.fade-out {
   opacity: 0;
-  transform: translateX(50px);
+  transform: translateX(30px) scale(0.95);
 }
 
+/* Кастомный чекбокс в стиле галочки ручкой */
 .checkbox {
-  margin: 0px;
-  width: 14px;
-  height: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #854d0e;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  background: #fff8e7;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
-h2 {
-  margin-bottom: 3px;
+.checkbox:checked {
+  background-color: #ca8a04;
+  border-color: #854d0e;
 }
 
-section {
-  border: solid 2px #8b8b8bdc;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8)  ;
+.checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: -4px;
+  left: 2px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Поля ввода и кнопки */
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.input-row input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid #d9b26e;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-family: 'Neucha', cursive;
+  font-size: 1.15rem;
+  color: #2c221e;
+  outline: none;
+}
+
+.input-row input::placeholder {
+  color: #a1824a;
+}
+
+.input-row input:focus {
+  background: #ffffff;
+  border-color: #a16207;
+}
+
+.input-row button {
+  background: #a16207;
+  color: #fef3c7;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Neucha', cursive;
+  font-size: 1.15rem;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(161, 98, 7, 0.3);
+  transition: all 0.2s ease;
+}
+
+.input-row button:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* Любовная плашка */
+.love {
+  text-align: center;
+  background: #fde68a;
+  border: 2px dashed #f59e0b;
+  padding: 10px;
+  border-radius: 12px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  color: #92400e;
 }
