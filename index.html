@@ -2,12 +2,12 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Список покупок и дел</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@500;600;700&family=Neucha&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -18,29 +18,31 @@
     </header>
 
     <main class="main">
-      <div class="container">
+      <div class="paper-container">
+        
+        <div class="margin-line"></div>
 
-        <!-- Дела -->
         <section class="tasks">
           <h2>Дела</h2>
           <ol id="taskList"></ol>
           <div class="input-row">
-            <input id="taskInput" type="text" placeholder="Деловые дела..." />
+            <input id="taskInput" type="text" placeholder="Что нужно сделать..." />
             <button id="addTaskBtn" type="button">Добавить</button>
           </div>
         </section>
 
-        <!-- Покупки -->
         <section class="list">
           <h2>Список покупок</h2>
           <ol id="itemList"></ol>
           <div class="input-row">
-            <input id="itemInput" type="text" placeholder="Новый товар..." />
+            <input id="itemInput" type="text" placeholder="Купить..." />
             <button id="addBtn" type="button">Добавить</button>
           </div>
         </section>
 
-        <section class="love">Настюшка ❤️ Максюшка</section>
+        <section class="love">
+          <span>Настюшка ❤️ Максюшка 🐶 Бибизяна</span>
+        </section>
 
       </div>
     </main>
