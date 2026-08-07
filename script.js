@@ -26,6 +26,29 @@ const taskInput = document.getElementById('taskInput');
 const addTaskBtn = document.getElementById('addTaskBtn');
 const taskList = document.getElementById('taskList');
 
+const tasksBadge = document.getElementById('tasksBadge');
+const shoppingBadge = document.getElementById('shoppingBadge');
+
+// Переключение вкладок
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetTab = btn.dataset.tab;
+
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabContents.forEach(c => c.classList.remove('active'));
+
+    btn.classList.add('active');
+    if (targetTab === 'tasks') {
+      document.getElementById('tasksSection').classList.add('active');
+    } else {
+      document.getElementById('shoppingSection').classList.add('active');
+    }
+  });
+});
+
 // Универсальная функция добавления
 function addEntry(refPath, input) {
   const name = input.value.trim();
@@ -38,12 +61,27 @@ function addEntry(refPath, input) {
 addBtn.addEventListener('click', () => addEntry(listRef, itemInput));
 addTaskBtn.addEventListener('click', () => addEntry(tasksRef, taskInput));
 
-// Рендер списка с чекбоксами
-function renderList(refPath, container, type) {
+// Поддержка Enter в инпутах
+itemInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') addEntry(listRef, itemInput);
+});
+taskInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') addEntry(tasksRef, taskInput);
+});
+
+// Рендер списка с чекбоксами и обновление бейджей
+function renderList(refPath, container, type, badgeEl) {
   onValue(refPath, snapshot => {
     const data = snapshot.val();
     container.innerHTML = '';
-    if (!data) return;
+    
+    if (!data) {
+      badgeEl.textContent = '0';
+      return;
+    }
+
+    const keys = Object.keys(data);
+    badgeEl.textContent = keys.length;
 
     for (let id in data) {
       const item = data[id];
@@ -60,7 +98,6 @@ function renderList(refPath, container, type) {
         if (checkbox.checked) {
           li.classList.add('fade-out');
           setTimeout(() => {
-            // Удаляем товар или дело из Firebase
             const itemRef = type === 'Покупка'
               ? ref(db, `shoppingList/${id}`)
               : ref(db, `taskList/${id}`);
@@ -78,5 +115,5 @@ function renderList(refPath, container, type) {
 }
 
 // Запуск рендера
-renderList(listRef, itemList, 'Покупка');
-renderList(tasksRef, taskList, 'Дело');
+renderList(listRef, itemList, 'Покупка', shoppingBadge);
+renderList(tasksRef, taskList, 'Дело', tasksBadge);
