@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Список покупок и дел</title>
 
+  <!-- Подключение шрифтов -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@500;600;700&family=Neucha&display=swap" rel="stylesheet">
@@ -18,32 +19,48 @@
     </header>
 
     <main class="main">
-      <div class="paper-container">
-        
-        <div class="margin-line"></div>
+      <div class="notebook-wrapper">
+        <!-- Закладки поверх блокнота -->
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="tasks">
+            <span>Дела</span>
+            <span id="tasksBadge" class="badge">0</span>
+          </button>
+          <button class="tab-btn" data-tab="shopping">
+            <span>Покупки</span>
+            <span id="shoppingBadge" class="badge">0</span>
+          </button>
+        </div>
 
-        <section class="tasks">
-          <h2>Дела</h2>
-          <ol id="taskList"></ol>
-          <div class="input-row">
-            <input id="taskInput" type="text" placeholder="Что нужно сделать..." />
-            <button id="addTaskBtn" type="button">Добавить</button>
-          </div>
-        </section>
+        <!-- Лист блокнота -->
+        <div class="paper-container">
+          <div class="margin-line"></div>
 
-        <section class="list">
-          <h2>Список покупок</h2>
-          <ol id="itemList"></ol>
-          <div class="input-row">
-            <input id="itemInput" type="text" placeholder="Купить..." />
-            <button id="addBtn" type="button">Добавить</button>
-          </div>
-        </section>
+          <!-- Секция ДЕЛА -->
+          <section id="tasksSection" class="tasks tab-content active">
+            <h2>Дела</h2>
+            <ol id="taskList"></ol>
+            <div class="input-row">
+              <input id="taskInput" type="text" placeholder="Что нужно сделать..." />
+              <button id="addTaskBtn" type="button">Добавить</button>
+            </div>
+          </section>
 
-        <section class="love">
-          <span>Настюшка ❤️ Максюшка 🐶 Лялюшка</span>
-        </section>
+          <!-- Секция ПОКУПКИ -->
+          <section id="shoppingSection" class="list tab-content">
+            <h2>Список покупок</h2>
+            <ol id="itemList"></ol>
+            <div class="input-row">
+              <input id="itemInput" type="text" placeholder="Купить..." />
+              <button id="addBtn" type="button">Добавить</button>
+            </div>
+          </section>
 
+          <!-- Подпись внизу -->
+          <section class="love">
+            <span>Настюшка ❤️ Максюшка 🐶 Лялюшка</span>
+          </section>
+        </div>
       </div>
     </main>
   </div>
