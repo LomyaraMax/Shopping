@@ -11,7 +11,6 @@ body, h1, h2, h3, p, ol, ul {
 }
 
 body {
-  /* Тёплый фоновый цвет деревянного стола / уюта */
   background: #2d241e;
   background-image: radial-gradient(#3a2f28 1px, transparent 0);
   background-size: 24px 24px;
@@ -31,11 +30,13 @@ body {
 .header {
   text-align: center;
   margin-bottom: 15px;
+  width: 100%;
+  max-width: 480px;
 }
 
 .header h1 {
   font-family: 'Caveat', cursive;
-  font-size: 2.4rem;
+  font-size: 2.5rem;
   color: #f7e7ce;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -44,29 +45,99 @@ body {
   width: 100%;
   max-width: 480px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Контейнер блокнота (закладки + лист) */
+.notebook-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Вкладки/закладки блокнота */
+.tabs {
+  display: flex;
+  gap: 6px;
+  padding-left: 45px; /* Выравнивание с учетом полей */
+  z-index: 2;
+  margin-bottom: -1px; /* Прижимаем вплотную к листу */
+}
+
+.tab-btn {
+  background: #e2cb92;
+  border: 1px solid #c9b075;
+  border-bottom: none;
+  color: #71420a;
+  font-family: 'Neucha', cursive;
+  font-size: 1.25rem;
+  padding: 8px 16px 6px 16px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.tab-btn:hover {
+  background: #ebd8a7;
+}
+
+/* Активная закладка становится частью листа */
+.tab-btn.active {
+  background: #fef3c7;
+  border-color: #ebda9d;
+  color: #854d0e;
+  font-weight: bold;
+  padding-top: 10px;
+  margin-top: -3px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Круглый счетчик позиции */
+.badge {
+  background: #a16207;
+  color: #fef3c7;
+  border-radius: 12px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  font-size: 0.9rem;
+  line-height: 1;
+  font-family: 'Comfortaa', sans-serif;
+  transition: all 0.25s ease;
+}
+
+.tab-btn.active .badge {
+  background: #854d0e;
+  color: #fef3c7;
 }
 
 /* Лист жёлтой бумаги */
 .paper-container {
   position: relative;
   width: 100%;
-  /* Цвет классической желтоватой бумаги / стикера */
   background-color: #fef3c7;
-  /* Легкие линейки как на линованной бумаге */
   background-image: linear-gradient(#e5d5a1 1px, transparent 1px);
   background-size: 100% 32px;
-  border-radius: 16px;
-  padding: 30px 20px 25px 45px;
-  /* Тёплая мягкая тень */
+  border-radius: 0 16px 16px 16px;
+  padding: 25px 20px 25px 45px;
   box-shadow: 
     0 10px 25px rgba(0, 0, 0, 0.4),
     inset 0 0 80px rgba(217, 178, 110, 0.3);
   border: 1px solid #ebda9d;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   overflow: hidden;
+  z-index: 1;
 }
 
 /* Красная вертикальная линия полей */
@@ -80,11 +151,20 @@ body {
   opacity: 0.6;
 }
 
+/* Переключение отображения секций */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
 h2 {
   font-family: 'Caveat', cursive;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #854d0e;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   border-bottom: 2px dashed #eab308;
   padding-bottom: 4px;
 }
@@ -95,7 +175,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .tasks ol li, .list ol li {
@@ -103,7 +183,7 @@ h2 {
   align-items: center;
   justify-content: space-between;
   flex-direction: row-reverse;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.65);
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid rgba(217, 178, 110, 0.5);
@@ -111,6 +191,7 @@ h2 {
   color: #3f2c1d;
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  word-break: break-word;
 }
 
 .tasks ol li.fade-out, .list ol li.fade-out {
@@ -118,14 +199,14 @@ h2 {
   transform: translateX(30px) scale(0.95);
 }
 
-/* Кастомный чекбокс в стиле галочки ручкой */
+/* Чекбокс */
 .checkbox {
   appearance: none;
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border: 2px solid #854d0e;
-  border-radius: 4px;
+  border-radius: 6px;
   outline: none;
   cursor: pointer;
   position: relative;
@@ -143,7 +224,7 @@ h2 {
   content: '✓';
   position: absolute;
   top: -4px;
-  left: 2px;
+  left: 3px;
   color: #ffffff;
   font-size: 16px;
   font-weight: bold;
@@ -158,12 +239,12 @@ h2 {
 
 .input-row input {
   flex: 1;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   border: 1.5px solid #d9b26e;
   padding: 10px 14px;
   border-radius: 10px;
   font-family: 'Neucha', cursive;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: #2c221e;
   outline: none;
 }
@@ -184,7 +265,7 @@ h2 {
   border: none;
   border-radius: 10px;
   font-family: 'Neucha', cursive;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   cursor: pointer;
   box-shadow: 0 3px 6px rgba(161, 98, 7, 0.3);
   transition: all 0.2s ease;
@@ -200,9 +281,10 @@ h2 {
   text-align: center;
   background: #fde68a;
   border: 2px dashed #f59e0b;
-  padding: 5px;
+  padding: 6px;
   border-radius: 12px;
   font-family: 'Caveat', cursive;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #92400e;
+  margin-top: 10px;
 }
