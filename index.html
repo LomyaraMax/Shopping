@@ -10,7 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@500;600;700&family=Neucha&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Подключение стилей -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="wrapper">
@@ -20,7 +21,7 @@
 
     <main class="main">
       <div class="notebook-wrapper">
-        <!-- Закладки поверх блокнота -->
+        <!-- Вкладки блокнота -->
         <div class="tabs">
           <button class="tab-btn active" data-tab="tasks">
             <span>Дела</span>
@@ -30,13 +31,16 @@
             <span>Покупки</span>
             <span id="shoppingBadge" class="badge">0</span>
           </button>
+          <button class="tab-btn" data-tab="schedule">
+            <span>График</span>
+          </button>
         </div>
 
         <!-- Лист блокнота -->
         <div class="paper-container">
           <div class="margin-line"></div>
 
-          <!-- Секция ДЕЛА -->
+          <!-- Раздел: Дела -->
           <section id="tasksSection" class="tasks tab-content active">
             <h2>Дела</h2>
             <ol id="taskList"></ol>
@@ -46,7 +50,7 @@
             </div>
           </section>
 
-          <!-- Секция ПОКУПКИ -->
+          <!-- Раздел: Покупки -->
           <section id="shoppingSection" class="list tab-content">
             <h2>Список покупок</h2>
             <ol id="itemList"></ol>
@@ -56,7 +60,25 @@
             </div>
           </section>
 
-          <!-- Подпись внизу -->
+          <!-- Раздел: График -->
+          <section id="scheduleSection" class="schedule tab-content">
+            <h2>График работы</h2>
+            
+            <div class="calendar-nav">
+              <button class="cal-btn" id="prevMonthBtn">←</button>
+              <div class="cal-title" id="calMonthTitle">Загрузка...</div>
+              <button class="cal-btn" id="nextMonthBtn">→</button>
+            </div>
+
+            <div class="cal-legend">
+              <div class="leg-item"><span class="leg-dot st-98"></span>98 отд.</div>
+              <div class="leg-item"><span class="leg-dot st-163"></span>163 отд.</div>
+              <div class="leg-item"><span class="leg-dot st-vh"></span>ВХ</div>
+            </div>
+
+            <div class="cal-grid" id="calGrid"></div>
+          </section>
+
           <section class="love">
             <span>Настюшка ❤️ Максюшка 🐶 Лялюшка</span>
           </section>
@@ -65,6 +87,18 @@
     </main>
   </div>
 
+  <!-- Модалка выбора дня -->
+  <div class="modal-overlay" id="shiftModalOverlay">
+    <div class="shift-modal-card">
+      <div class="modal-title" id="shiftModalTitle">Назначить смену</div>
+      <button class="shift-opt-btn opt-98" id="btnShift98">98 Отделение 🟦</button>
+      <button class="shift-opt-btn opt-163" id="btnShift163">163 Отделение 🟨</button>
+      <button class="shift-opt-btn opt-vh" id="btnShiftVh">Выходной (ВХ) 🟩</button>
+      <button class="shift-opt-btn opt-reset" id="btnShiftReset">Сбросить день ✕</button>
+    </div>
+  </div>
+
+  <!-- Подключение скрипта (модуль) -->
   <script type="module" src="script.js"></script>
 </body>
 </html>
