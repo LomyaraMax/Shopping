@@ -49,20 +49,20 @@ body {
   align-items: center;
 }
 
-/* Контейнер блокнота (закладки + лист) */
+/* Контейнер блокнота */
 .notebook-wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-/* Вкладки/закладки блокнота */
+/* Вкладки блокнота */
 .tabs {
   display: flex;
   gap: 6px;
-  padding-left: 45px; /* Выравнивание с учетом полей */
+  padding-left: 45px;
   z-index: 2;
-  margin-bottom: -1px; /* Прижимаем вплотную к листу */
+  margin-bottom: -1px;
 }
 
 .tab-btn {
@@ -72,22 +72,21 @@ body {
   color: #71420a;
   font-family: 'Neucha', cursive;
   font-size: 1.25rem;
-  padding: 8px 16px 6px 16px;
+  padding: 8px 14px 6px 14px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   transition: all 0.2s ease;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.15);
 }
 
 .tab-btn:hover {
   background: #ebd8a7;
 }
 
-/* Активная закладка становится частью листа */
 .tab-btn.active {
   background: #fef3c7;
   border-color: #ebda9d;
@@ -95,10 +94,9 @@ body {
   font-weight: bold;
   padding-top: 10px;
   margin-top: -3px;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.15);
 }
 
-/* Круглый счетчик позиции */
 .badge {
   background: #a16207;
   color: #fef3c7;
@@ -140,7 +138,6 @@ body {
   z-index: 1;
 }
 
-/* Красная вертикальная линия полей */
 .margin-line {
   position: absolute;
   top: 0;
@@ -151,7 +148,6 @@ body {
   opacity: 0.6;
 }
 
-/* Переключение отображения секций */
 .tab-content {
   display: none;
 }
@@ -169,7 +165,6 @@ h2 {
   padding-bottom: 4px;
 }
 
-/* Списки элементов */
 .tasks ol, .list ol {
   list-style: none;
   display: flex;
@@ -199,7 +194,6 @@ h2 {
   transform: translateX(30px) scale(0.95);
 }
 
-/* Чекбокс */
 .checkbox {
   appearance: none;
   -webkit-appearance: none;
@@ -230,7 +224,6 @@ h2 {
   font-weight: bold;
 }
 
-/* Поля ввода и кнопки */
 .input-row {
   display: flex;
   gap: 8px;
@@ -276,7 +269,6 @@ h2 {
   box-shadow: none;
 }
 
-/* Любовная плашка */
 .love {
   text-align: center;
   background: #fde68a;
@@ -288,3 +280,163 @@ h2 {
   color: #92400e;
   margin-top: 10px;
 }
+
+/* Календарь */
+.calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid #d9b26e;
+}
+
+.cal-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #854d0e;
+}
+
+.cal-btn {
+  background: #a16207;
+  color: #fef3c7;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.cal-legend {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+  background: rgba(255,255,255,0.4);
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.leg-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.leg-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.leg-dot.st-98 { background: #2563eb; }
+.leg-dot.st-163 { background: #d97706; }
+.leg-dot.st-vh { background: #16a34a; }
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.cal-weekday {
+  text-align: center;
+  font-weight: bold;
+  color: #a16207;
+  font-size: 1.1rem;
+}
+
+.cal-day {
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #d9b26e;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.cal-day.empty {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cal-day-num {
+  font-size: 0.95rem;
+  font-weight: bold;
+  align-self: flex-start;
+  line-height: 1;
+}
+
+.cal-day-badge {
+  font-size: 0.9rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.cal-day.st-98 { background: #2563eb; color: #fff; border-color: #1d4ed8; }
+.cal-day.st-163 { background: #d97706; color: #fff; border-color: #b45309; }
+.cal-day.st-vh { background: #16a34a; color: #fff; border-color: #15803d; }
+
+/* Модалка выбора смены */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(45, 36, 30, 0.75);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.shift-modal-card {
+  background: #fef3c7;
+  border: 2px solid #a16207;
+  border-radius: 16px;
+  padding: 18px;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.modal-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: #854d0e;
+  text-align: center;
+  font-weight: bold;
+}
+
+.shift-opt-btn {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  font-family: 'Neucha', cursive;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.opt-98 { background: #2563eb; }
+.opt-163 { background: #d97706; }
+.opt-vh { background: #16a34a; }
+.opt-reset { background: transparent; border: 1px solid #a16207; color: #dc2626; }
