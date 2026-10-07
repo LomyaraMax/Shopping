@@ -100,9 +100,6 @@ const listRef =
 const tasksRef =
   ref(db, 'taskList');
 
-
-// Новые блоки дел
-
 const taskGroupsRef =
   ref(db, 'taskGroups');
 
@@ -449,9 +446,6 @@ renderShoppingList();
 // БЛОКИ ДЕЛ
 // ==========================================
 
-
-// Загружаем блоки
-
 onValue(
   taskGroupsRef,
   snapshot => {
@@ -477,9 +471,6 @@ function renderTaskGroups() {
   taskGroupsView.innerHTML = '';
 
 
-  // Первый постоянный блок.
-  // В него попадают старые дела из taskList.
-
   const defaultCard =
     createTaskGroupCard(
       'default',
@@ -493,8 +484,6 @@ function renderTaskGroups() {
     defaultCard
   );
 
-
-  // Новые блоки
 
   Object.keys(taskGroupsData)
     .forEach(groupId => {
@@ -658,12 +647,8 @@ function openTaskGroup(
   );
 
 
-  // Очищаем старый список
-
   taskList.innerHTML = '';
 
-
-  // Общие старые дела
 
   if (isDefault) {
 
@@ -679,8 +664,6 @@ function openTaskGroup(
 
   }
 
-
-  // Фокус на поле
 
   setTimeout(() => {
 
@@ -728,9 +711,6 @@ function renderDefaultTasks() {
   onValue(
     tasksRef,
     snapshot => {
-
-      // Если пользователь уже перешёл
-      // в другой блок — ничего не делаем
 
       if (
         currentTaskGroupId !== 'default'
@@ -971,8 +951,6 @@ function addCurrentTask() {
   }
 
 
-  // Если открыт старый общий блок
-
   if (
     currentTaskGroupId === 'default'
   ) {
@@ -1003,8 +981,6 @@ function addCurrentTask() {
     return;
   }
 
-
-  // Новый блок
 
   if (!currentTaskGroupId) {
     return;
@@ -1179,8 +1155,6 @@ function updateTasksBadge() {
   let total = 0;
 
 
-  // Старые дела
-
   onValue(
     tasksRef,
     snapshot => {
@@ -1196,8 +1170,6 @@ function updateTasksBadge() {
 
       }
 
-
-      // Блоки
 
       let groupsTotal = 0;
 
