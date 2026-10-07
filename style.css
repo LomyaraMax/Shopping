@@ -1,9 +1,14 @@
+/* ==========================================
+   БАЗА
+   ========================================== */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
+
 
 html,
 body {
@@ -13,49 +18,61 @@ body {
   min-height: 100%;
 }
 
-body,
-h1,
-h2,
-h3,
-p,
-ol,
-ul {
-  margin: 0;
-  padding: 0;
-}
 
 body {
+
   background: #2d241e;
-  background-image: radial-gradient(#3a2f28 1px, transparent 0);
+
+  background-image:
+    radial-gradient(
+      #3a2f28 1px,
+      transparent 0
+    );
+
   background-size: 24px 24px;
 
   min-height: 100dvh;
 
-  font-family: 'Neucha', 'Comfortaa', cursive, sans-serif;
+  font-family:
+    'Neucha',
+    'Comfortaa',
+    cursive,
+    sans-serif;
+
   color: #2c221e;
 
-  padding: 12px 8px;
+  padding:
+    12px 8px;
 
   overflow: hidden;
 }
 
 
-/* ========================================= */
-/* ОСНОВНОЙ КОНТЕЙНЕР */
-/* ========================================= */
+/* ==========================================
+   ОСНОВНОЙ КОНТЕЙНЕР
+   ========================================== */
 
 .wrapper {
+
   width: 100%;
-  height: calc(100dvh - 24px);
+
+  height:
+    calc(100dvh - 24px);
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
 }
 
+
 .header {
+
   text-align: center;
+
   width: 100%;
+
   max-width: 600px;
 
   flex-shrink: 0;
@@ -63,54 +80,73 @@ body {
   margin-bottom: 8px;
 }
 
+
 .header h1 {
-  font-family: 'Caveat', cursive;
+
+  font-family:
+    'Caveat',
+    cursive;
+
   font-size: 2.3rem;
 
   color: #f7e7ce;
 
   text-shadow:
-    2px 2px 4px rgba(0, 0, 0, 0.5);
+    2px 2px 4px
+    rgba(0, 0, 0, 0.5);
+
+  margin-top: 0;
+
+  margin-bottom: 0;
 }
 
 
-/* ========================================= */
-/* MAIN */
-/* ========================================= */
+/* ==========================================
+   MAIN
+   ========================================== */
 
 .main {
+
   width: 100%;
+
   max-width: 600px;
 
   flex: 1;
+
   min-height: 0;
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
 }
 
 
-/* ========================================= */
-/* БЛОКНОТ */
-/* ========================================= */
+/* ==========================================
+   БЛОКНОТ
+   ========================================== */
 
 .notebook-wrapper {
+
   width: 100%;
+
   height: 100%;
 
   display: flex;
+
   flex-direction: column;
 
   min-height: 0;
 }
 
 
-/* ========================================= */
-/* ВКЛАДКИ */
-/* ========================================= */
+/* ==========================================
+   ВКЛАДКИ
+   ========================================== */
 
 .tabs {
+
   display: flex;
 
   gap: 5px;
@@ -124,40 +160,56 @@ body {
   flex-shrink: 0;
 }
 
+
 .tab-btn {
+
   background: #e2cb92;
 
-  border: 1px solid #c9b075;
+  border:
+    1px solid #c9b075;
+
   border-bottom: none;
 
   color: #71420a;
 
-  font-family: 'Neucha', cursive;
+  font-family:
+    'Neucha',
+    cursive;
+
   font-size: 1.2rem;
 
-  padding: 7px 13px 5px;
+  padding:
+    7px 13px 5px;
 
   border-top-left-radius: 12px;
+
   border-top-right-radius: 12px;
 
   cursor: pointer;
 
   display: flex;
+
   align-items: center;
 
   gap: 5px;
 
-  transition: all 0.2s ease;
+  transition:
+    all 0.2s ease;
 
   box-shadow:
-    0 -2px 5px rgba(0, 0, 0, 0.15);
+    0 -2px 5px
+    rgba(0, 0, 0, 0.15);
 }
 
+
 .tab-btn:hover {
+
   background: #ebd8a7;
 }
 
+
 .tab-btn.active {
+
   background: #fef3c7;
 
   border-color: #ebda9d;
@@ -171,15 +223,17 @@ body {
   margin-top: -3px;
 
   box-shadow:
-    0 -4px 8px rgba(0, 0, 0, 0.15);
+    0 -4px 8px
+    rgba(0, 0, 0, 0.15);
 }
 
 
-/* ========================================= */
-/* BADGE */
-/* ========================================= */
+/* ==========================================
+   BADGE
+   ========================================== */
 
 .badge {
+
   background: #a16207;
 
   color: #fef3c7;
@@ -187,38 +241,49 @@ body {
   border-radius: 12px;
 
   min-width: 21px;
+
   height: 21px;
 
-  padding: 0 5px;
+  padding:
+    0 5px;
 
   display: inline-flex;
 
   align-items: center;
+
   justify-content: center;
 
   font-size: 0.85rem;
 
   line-height: 1;
 
-  font-family: 'Comfortaa', sans-serif;
+  font-family:
+    'Comfortaa',
+    sans-serif;
 
-  transition: all 0.25s ease;
+  transition:
+    all 0.25s ease;
 }
 
+
 .tab-btn.active .badge {
+
   background: #854d0e;
+
   color: #fef3c7;
 }
 
 
-/* ========================================= */
-/* ЛИСТ БЛОКНОТА */
-/* ========================================= */
+/* ==========================================
+   ЛИСТ БЛОКНОТА
+   ========================================== */
 
 .paper-container {
+
   position: relative;
 
   width: 100%;
+
   height: 100%;
 
   min-height: 0;
@@ -231,7 +296,8 @@ body {
       transparent 1px
     );
 
-  background-size: 100% 32px;
+  background-size:
+    100% 32px;
 
   border-radius:
     0 16px 16px 16px;
@@ -240,12 +306,17 @@ body {
     18px 16px 15px 40px;
 
   box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.4),
-    inset 0 0 80px rgba(217, 178, 110, 0.3);
+    0 10px 25px
+      rgba(0, 0, 0, 0.4),
 
-  border: 1px solid #ebda9d;
+    inset 0 0 80px
+      rgba(217, 178, 110, 0.3);
+
+  border:
+    1px solid #ebda9d;
 
   display: flex;
+
   flex-direction: column;
 
   overflow: hidden;
@@ -254,12 +325,16 @@ body {
 }
 
 
-/* Красная линия слева */
+/* ==========================================
+   КРАСНАЯ ЛИНИЯ
+   ========================================== */
 
 .margin-line {
+
   position: absolute;
 
   top: 0;
+
   bottom: 0;
 
   left: 31px;
@@ -274,18 +349,22 @@ body {
 }
 
 
-/* ========================================= */
-/* ВКЛАДКИ */
-/* ========================================= */
+/* ==========================================
+   ВКЛАДКИ
+   ========================================== */
 
 .tab-content {
+
   display: none;
 
   height: 100%;
+
   min-height: 0;
 }
 
+
 .tab-content.active {
+
   display: flex;
 
   flex-direction: column;
@@ -294,33 +373,41 @@ body {
 }
 
 
-/* ========================================= */
-/* ЗАГОЛОВКИ */
-/* ========================================= */
+/* ==========================================
+   ЗАГОЛОВКИ
+   ========================================== */
 
 h2 {
-  font-family: 'Caveat', cursive;
+
+  font-family:
+    'Caveat',
+    cursive;
 
   font-size: 2rem;
 
   color: #854d0e;
 
+  margin-top: 0;
+
   margin-bottom: 10px;
 
-  border-bottom: 2px dashed #eab308;
+  border-bottom:
+    2px dashed #eab308;
 
   padding-bottom: 3px;
 }
 
 
-/* ========================================= */
-/* ЗАГОЛОВОК "ДЕЛА" + КНОПКА */
-/* ========================================= */
+/* ==========================================
+   ЗАГОЛОВОК ДЕЛ
+   ========================================== */
 
 .tasks-header {
+
   display: flex;
 
   align-items: center;
+
   justify-content: space-between;
 
   gap: 10px;
@@ -328,15 +415,21 @@ h2 {
   flex-shrink: 0;
 }
 
+
 .tasks-header h2 {
+
   flex: 1;
 }
 
 
-/* Кнопка плюс */
+/* ==========================================
+   КНОПКА ПЛЮС
+   ========================================== */
 
 .add-group-btn {
+
   width: 38px;
+
   height: 38px;
 
   flex-shrink: 0;
@@ -349,7 +442,9 @@ h2 {
 
   color: #fff7dc;
 
-  font-family: 'Comfortaa', sans-serif;
+  font-family:
+    'Comfortaa',
+    sans-serif;
 
   font-size: 1.6rem;
 
@@ -358,26 +453,33 @@ h2 {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   cursor: pointer;
 
   box-shadow:
-    0 3px 6px rgba(161, 98, 7, 0.3);
+    0 3px 6px
+    rgba(161, 98, 7, 0.3);
 
-  transition: 0.2s;
+  transition:
+    0.2s;
 }
+
 
 .add-group-btn:active {
-  transform: scale(0.94);
+
+  transform:
+    scale(0.94);
 }
 
 
-/* ========================================= */
-/* БЛОКИ ДЕЛ */
-/* ========================================= */
+/* ==========================================
+   БЛОКИ ДЕЛ
+   ========================================== */
 
 #taskGroupsView {
+
   flex: 1;
 
   min-height: 0;
@@ -391,20 +493,27 @@ h2 {
   scrollbar-width: thin;
 }
 
+
 #taskGroupsView::-webkit-scrollbar {
+
   width: 5px;
 }
 
+
 #taskGroupsView::-webkit-scrollbar-thumb {
+
   background: #c9a95c;
 
   border-radius: 10px;
 }
 
 
-/* Карточка блока */
+/* ==========================================
+   КАРТОЧКА БЛОКА
+   ========================================== */
 
 .task-group-card {
+
   width: 100%;
 
   display: flex;
@@ -419,34 +528,47 @@ h2 {
     rgba(255, 255, 255, 0.68);
 
   border:
-    1px solid rgba(217, 178, 110, 0.6);
+    1px solid
+    rgba(217, 178, 110, 0.6);
 
   border-radius: 12px;
 
-  padding: 12px 13px;
+  padding:
+    12px 10px 12px 13px;
 
   margin-bottom: 9px;
 
   cursor: pointer;
 
   box-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.05);
+    0 2px 5px
+    rgba(0, 0, 0, 0.05);
 
   transition:
     transform 0.15s,
     background 0.15s;
 }
 
+
 .task-group-card:active {
-  transform: scale(0.985);
+
+  transform:
+    scale(0.985);
 
   background:
     rgba(255, 255, 255, 0.9);
 }
 
 
+/* ==========================================
+   ИНФОРМАЦИЯ БЛОКА
+   ========================================== */
+
 .task-group-info {
+
   min-width: 0;
+
+  flex: 1;
 
   display: flex;
 
@@ -457,7 +579,10 @@ h2 {
 
 
 .task-group-name {
-  font-family: 'Caveat', cursive;
+
+  font-family:
+    'Caveat',
+    cursive;
 
   font-size: 1.55rem;
 
@@ -474,7 +599,10 @@ h2 {
 
 
 .task-group-count {
-  font-family: 'Neucha', cursive;
+
+  font-family:
+    'Neucha',
+    cursive;
 
   font-size: 1rem;
 
@@ -482,20 +610,91 @@ h2 {
 }
 
 
-.task-group-arrow {
-  font-size: 1.5rem;
+/* ==========================================
+   ПРАВАЯ ЧАСТЬ КАРТОЧКИ
+   ========================================== */
 
-  color: #a16207;
+.task-group-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
 
   flex-shrink: 0;
 }
 
 
-/* ========================================= */
-/* ОТКРЫТЫЙ БЛОК */
-/* ========================================= */
+/* ==========================================
+   СТРЕЛКА
+   ========================================== */
+
+.task-group-arrow {
+
+  font-size: 1.5rem;
+
+  color: #a16207;
+
+  flex-shrink: 0;
+
+  line-height: 1;
+}
+
+
+/* ==========================================
+   КНОПКА УДАЛЕНИЯ БЛОКА
+   ========================================== */
+
+.task-group-delete-btn {
+
+  width: 34px;
+
+  height: 34px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background:
+    rgba(220, 38, 38, 0.1);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  font-size: 1.05rem;
+
+  flex-shrink: 0;
+
+  transition:
+    background 0.15s,
+    transform 0.15s;
+}
+
+
+.task-group-delete-btn:active {
+
+  transform:
+    scale(0.9);
+
+  background:
+    rgba(220, 38, 38, 0.2);
+}
+
+
+/* ==========================================
+   ОТКРЫТЫЙ БЛОК
+   ========================================== */
 
 .task-block-view {
+
   height: 100%;
 
   min-height: 0;
@@ -505,14 +704,19 @@ h2 {
   flex-direction: column;
 }
 
+
 .hidden {
+
   display: none !important;
 }
 
 
-/* Верхняя панель блока */
+/* ==========================================
+   ВЕРХНЯЯ ПАНЕЛЬ БЛОКА
+   ========================================== */
 
 .task-block-header {
+
   display: flex;
 
   align-items: center;
@@ -526,7 +730,9 @@ h2 {
 
 
 .back-groups-btn {
+
   width: 38px;
+
   height: 34px;
 
   border: none;
@@ -539,7 +745,9 @@ h2 {
 
   font-size: 1.35rem;
 
-  font-family: 'Comfortaa', sans-serif;
+  font-family:
+    'Comfortaa',
+    sans-serif;
 
   cursor: pointer;
 
@@ -548,11 +756,14 @@ h2 {
 
 
 .current-task-group-title {
+
   flex: 1;
 
   min-width: 0;
 
-  font-family: 'Caveat', cursive;
+  font-family:
+    'Caveat',
+    cursive;
 
   font-size: 1.75rem;
 
@@ -568,11 +779,57 @@ h2 {
 }
 
 
-/* ========================================= */
-/* СПИСОК ДЕЛ */
-/* ========================================= */
+/* ==========================================
+   КНОПКА УДАЛЕНИЯ ОТКРЫТОГО БЛОКА
+   ========================================== */
+
+.delete-group-btn {
+
+  width: 36px;
+
+  height: 34px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background:
+    rgba(220, 38, 38, 0.1);
+
+  font-size: 1rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  transition:
+    background 0.15s,
+    transform 0.15s;
+}
+
+
+.delete-group-btn:active {
+
+  transform:
+    scale(0.9);
+
+  background:
+    rgba(220, 38, 38, 0.2);
+}
+
+
+/* ==========================================
+   СПИСОК ДЕЛ
+   ========================================== */
 
 .task-list-scroll {
+
   flex: 1;
 
   min-height: 0;
@@ -585,30 +842,39 @@ h2 {
 
   scrollbar-width: thin;
 
-  scrollbar-color: #c9a95c transparent;
+  scrollbar-color:
+    #c9a95c
+    transparent;
 }
 
+
 .task-list-scroll::-webkit-scrollbar {
+
   width: 5px;
 }
 
+
 .task-list-scroll::-webkit-scrollbar-track {
+
   background: transparent;
 }
 
+
 .task-list-scroll::-webkit-scrollbar-thumb {
+
   background: #c9a95c;
 
   border-radius: 10px;
 }
 
 
-/* ========================================= */
-/* СПИСКИ */
-/* ========================================= */
+/* ==========================================
+   СПИСКИ
+   ========================================== */
 
 .tasks ol,
 .list ol {
+
   list-style: none;
 
   display: flex;
@@ -625,6 +891,7 @@ h2 {
 
 .tasks ol li,
 .list ol li {
+
   display: flex;
 
   align-items: center;
@@ -644,16 +911,19 @@ h2 {
   border-radius: 8px;
 
   border:
-    1px solid rgba(217, 178, 110, 0.5);
+    1px solid
+    rgba(217, 178, 110, 0.5);
 
   font-size: 1.25rem;
 
   color: #3f2c1d;
 
-  transition: all 0.3s ease;
+  transition:
+    all 0.3s ease;
 
   box-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.05);
+    0 2px 5px
+    rgba(0, 0, 0, 0.05);
 
   word-break: break-word;
 }
@@ -661,6 +931,7 @@ h2 {
 
 .tasks ol li.fade-out,
 .list ol li.fade-out {
+
   opacity: 0;
 
   transform:
@@ -669,15 +940,18 @@ h2 {
 }
 
 
-/* ========================================= */
-/* CHECKBOX */
-/* ========================================= */
+/* ==========================================
+   CHECKBOX
+   ========================================== */
 
 .checkbox {
+
   appearance: none;
+
   -webkit-appearance: none;
 
   width: 22px;
+
   height: 22px;
 
   border:
@@ -693,13 +967,15 @@ h2 {
 
   background: #fff8e7;
 
-  transition: all 0.2s ease;
+  transition:
+    all 0.2s ease;
 
   flex-shrink: 0;
 }
 
 
 .checkbox:checked {
+
   background-color: #ca8a04;
 
   border-color: #854d0e;
@@ -707,11 +983,13 @@ h2 {
 
 
 .checkbox:checked::after {
+
   content: '✓';
 
   position: absolute;
 
   top: -4px;
+
   left: 3px;
 
   color: #ffffff;
@@ -722,11 +1000,12 @@ h2 {
 }
 
 
-/* ========================================= */
-/* ПОЛЕ ДОБАВЛЕНИЯ */
-/* ========================================= */
+/* ==========================================
+   ПОЛЕ ДОБАВЛЕНИЯ
+   ========================================== */
 
 .input-row {
+
   display: flex;
 
   gap: 6px;
@@ -740,6 +1019,7 @@ h2 {
 
 
 .input-row input {
+
   min-width: 0;
 
   flex: 1;
@@ -757,7 +1037,9 @@ h2 {
 
   border-radius: 10px;
 
-  font-family: 'Neucha', cursive;
+  font-family:
+    'Neucha',
+    cursive;
 
   font-size: 1.15rem;
 
@@ -768,20 +1050,25 @@ h2 {
 
 
 .input-row input::placeholder {
+
   color: #a1824a;
 }
 
 
 .input-row input:focus {
+
   background: #ffffff;
 
   border-color: #a16207;
 }
 
 
-/* Кнопка Добавить */
+/* ==========================================
+   КНОПКА ДОБАВИТЬ
+   ========================================== */
 
 .input-row button {
+
   flex:
     0 0 auto;
 
@@ -802,7 +1089,9 @@ h2 {
 
   border-radius: 10px;
 
-  font-family: 'Neucha', cursive;
+  font-family:
+    'Neucha',
+    cursive;
 
   font-size: 1.05rem;
 
@@ -811,24 +1100,29 @@ h2 {
   cursor: pointer;
 
   box-shadow:
-    0 3px 6px rgba(161, 98, 7, 0.3);
+    0 3px 6px
+    rgba(161, 98, 7, 0.3);
 
-  transition: all 0.2s ease;
+  transition:
+    all 0.2s ease;
 }
 
 
 .input-row button:active {
-  transform: translateY(1px);
+
+  transform:
+    translateY(1px);
 
   box-shadow: none;
 }
 
 
-/* ========================================= */
-/* ПРОКРУТКА ПОКУПОК */
-/* ========================================= */
+/* ==========================================
+   ПОКУПКИ — ПРОКРУТКА
+   ========================================== */
 
 .shopping-list-scroll {
+
   flex: 1;
 
   min-height: 0;
@@ -841,25 +1135,32 @@ h2 {
 
   scrollbar-width: thin;
 
-  scrollbar-color: #c9a95c transparent;
+  scrollbar-color:
+    #c9a95c
+    transparent;
 }
 
+
 .shopping-list-scroll::-webkit-scrollbar {
+
   width: 5px;
 }
 
+
 .shopping-list-scroll::-webkit-scrollbar-thumb {
+
   background: #c9a95c;
 
   border-radius: 10px;
 }
 
 
-/* ========================================= */
-/* ЛЮБОВЬ */
-/* ========================================= */
+/* ==========================================
+   ЛЮБОВЬ
+   ========================================== */
 
 .love {
+
   text-align: center;
 
   background: #fde68a;
@@ -871,7 +1172,9 @@ h2 {
 
   border-radius: 12px;
 
-  font-family: 'Caveat', cursive;
+  font-family:
+    'Caveat',
+    cursive;
 
   font-size: 1.05rem;
 
@@ -883,11 +1186,12 @@ h2 {
 }
 
 
-/* ========================================= */
-/* МОДАЛКА СОЗДАНИЯ БЛОКА */
-/* ========================================= */
+/* ==========================================
+   МОДАЛКА СОЗДАНИЯ БЛОКА
+   ========================================== */
 
 .group-modal-overlay {
+
   position: fixed;
 
   inset: 0;
@@ -895,11 +1199,13 @@ h2 {
   background:
     rgba(45, 36, 30, 0.75);
 
-  backdrop-filter: blur(3px);
+  backdrop-filter:
+    blur(3px);
 
   display: flex;
 
   justify-content: center;
+
   align-items: center;
 
   z-index: 200;
@@ -916,6 +1222,7 @@ h2 {
 
 
 .group-modal-overlay.active {
+
   opacity: 1;
 
   pointer-events: auto;
@@ -923,6 +1230,7 @@ h2 {
 
 
 .group-modal-card {
+
   width: 100%;
 
   max-width: 330px;
@@ -937,12 +1245,16 @@ h2 {
   padding: 18px;
 
   box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.5);
+    0 10px 25px
+    rgba(0, 0, 0, 0.5);
 }
 
 
 .group-modal-title {
-  font-family: 'Caveat', cursive;
+
+  font-family:
+    'Caveat',
+    cursive;
 
   font-size: 1.9rem;
 
@@ -957,6 +1269,7 @@ h2 {
 
 
 .group-name-input {
+
   width: 100%;
 
   padding:
@@ -969,7 +1282,9 @@ h2 {
 
   background: #fffdf5;
 
-  font-family: 'Neucha', cursive;
+  font-family:
+    'Neucha',
+    cursive;
 
   font-size: 1.2rem;
 
@@ -980,11 +1295,13 @@ h2 {
 
 
 .group-name-input:focus {
+
   border-color: #a16207;
 }
 
 
 .group-modal-buttons {
+
   display: flex;
 
   gap: 8px;
@@ -994,6 +1311,7 @@ h2 {
 
 
 .group-modal-buttons button {
+
   flex: 1;
 
   border: none;
@@ -1002,7 +1320,9 @@ h2 {
 
   padding: 9px;
 
-  font-family: 'Neucha', cursive;
+  font-family:
+    'Neucha',
+    cursive;
 
   font-size: 1.15rem;
 
@@ -1011,6 +1331,7 @@ h2 {
 
 
 .group-cancel-btn {
+
   background: #e7d8ae;
 
   color: #71420a;
@@ -1018,20 +1339,23 @@ h2 {
 
 
 .group-save-btn {
+
   background: #a16207;
 
   color: #fff7dc;
 }
 
 
-/* ========================================= */
-/* КАЛЕНДАРЬ */
-/* ========================================= */
+/* ==========================================
+   КАЛЕНДАРЬ
+   ========================================== */
 
 .calendar-nav {
+
   display: flex;
 
   justify-content: space-between;
+
   align-items: center;
 
   margin-bottom: 10px;
@@ -1052,7 +1376,10 @@ h2 {
 
 
 .cal-title {
-  font-family: 'Caveat', cursive;
+
+  font-family:
+    'Caveat',
+    cursive;
 
   font-size: 1.6rem;
 
@@ -1063,6 +1390,7 @@ h2 {
 
 
 .cal-btn {
+
   background: #a16207;
 
   color: #fef3c7;
@@ -1080,7 +1408,12 @@ h2 {
 }
 
 
+/* ==========================================
+   ЛЕГЕНДА
+   ========================================== */
+
 .cal-legend {
+
   display: flex;
 
   justify-content: space-around;
@@ -1101,6 +1434,7 @@ h2 {
 
 
 .leg-item {
+
   display: flex;
 
   align-items: center;
@@ -1110,7 +1444,9 @@ h2 {
 
 
 .leg-dot {
+
   width: 12px;
+
   height: 12px;
 
   border-radius: 3px;
@@ -1118,21 +1454,29 @@ h2 {
 
 
 .leg-dot.st-98 {
+
   background: #2563eb;
 }
 
 
 .leg-dot.st-163 {
+
   background: #d97706;
 }
 
 
 .leg-dot.st-vh {
+
   background: #16a34a;
 }
 
 
+/* ==========================================
+   СЕТКА КАЛЕНДАРЯ
+   ========================================== */
+
 .cal-grid {
+
   display: grid;
 
   grid-template-columns:
@@ -1149,6 +1493,7 @@ h2 {
 
 
 .cal-weekday {
+
   text-align: center;
 
   font-weight: bold;
@@ -1160,6 +1505,7 @@ h2 {
 
 
 .cal-day {
+
   aspect-ratio: 1;
 
   background:
@@ -1185,6 +1531,7 @@ h2 {
 
 
 .cal-day.empty {
+
   opacity: 0;
 
   pointer-events: none;
@@ -1192,6 +1539,7 @@ h2 {
 
 
 .cal-day-num {
+
   font-size: 0.95rem;
 
   font-weight: bold;
@@ -1203,6 +1551,7 @@ h2 {
 
 
 .cal-day-badge {
+
   font-size: 0.9rem;
 
   font-weight: bold;
@@ -1212,6 +1561,7 @@ h2 {
 
 
 .cal-day.st-98 {
+
   background: #2563eb;
 
   color: #fff;
@@ -1221,6 +1571,7 @@ h2 {
 
 
 .cal-day.st-163 {
+
   background: #d97706;
 
   color: #fff;
@@ -1230,6 +1581,7 @@ h2 {
 
 
 .cal-day.st-vh {
+
   background: #16a34a;
 
   color: #fff;
@@ -1238,27 +1590,30 @@ h2 {
 }
 
 
-/* ========================================= */
-/* МОДАЛКА ГРАФИКА */
-/* ========================================= */
+/* ==========================================
+   МОДАЛКА ГРАФИКА
+   ========================================== */
 
 .modal-overlay {
+
   position: fixed;
 
-  top: 0;
-  left: 0;
+  inset: 0;
 
   width: 100%;
-  height: 100%;
+
+  height: 100dvh;
 
   background:
     rgba(45, 36, 30, 0.75);
 
-  backdrop-filter: blur(3px);
+  backdrop-filter:
+    blur(3px);
 
   display: flex;
 
   justify-content: center;
+
   align-items: center;
 
   z-index: 100;
@@ -1273,6 +1628,7 @@ h2 {
 
 
 .modal-overlay.active {
+
   opacity: 1;
 
   pointer-events: auto;
@@ -1280,6 +1636,7 @@ h2 {
 
 
 .shift-modal-card {
+
   background: #fef3c7;
 
   border:
@@ -1298,12 +1655,16 @@ h2 {
   gap: 10px;
 
   box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.5);
+    0 10px 25px
+    rgba(0, 0, 0, 0.5);
 }
 
 
 .modal-title {
-  font-family: 'Caveat', cursive;
+
+  font-family:
+    'Caveat',
+    cursive;
 
   font-size: 1.8rem;
 
@@ -1316,6 +1677,7 @@ h2 {
 
 
 .shift-opt-btn {
+
   padding: 10px;
 
   border-radius: 8px;
@@ -1324,7 +1686,9 @@ h2 {
 
   color: #fff;
 
-  font-family: 'Neucha', cursive;
+  font-family:
+    'Neucha',
+    cursive;
 
   font-size: 1.2rem;
 
@@ -1335,21 +1699,25 @@ h2 {
 
 
 .opt-98 {
+
   background: #2563eb;
 }
 
 
 .opt-163 {
+
   background: #d97706;
 }
 
 
 .opt-vh {
+
   background: #16a34a;
 }
 
 
 .opt-reset {
+
   background: transparent;
 
   border:
@@ -1359,48 +1727,63 @@ h2 {
 }
 
 
-/* ========================================= */
-/* ТЕЛЕФОН */
-/* ========================================= */
+/* ==========================================
+   ТЕЛЕФОН
+   ========================================== */
 
 @media (max-width: 480px) {
 
   body {
+
     padding:
       8px 5px;
   }
 
+
   .wrapper {
+
     height:
       calc(100dvh - 16px);
   }
 
+
   .header {
+
     margin-bottom: 5px;
   }
 
+
   .header h1 {
+
     font-size: 2rem;
   }
 
+
   .tabs {
+
     padding-left: 25px;
 
     gap: 3px;
   }
 
+
   .tab-btn {
+
     font-size: 1.05rem;
 
     padding:
       6px 10px 5px;
   }
 
+
   .tab-btn.active {
+
     padding-top: 8px;
   }
 
+
   .paper-container {
+
     padding:
       14px 10px 10px 32px;
 
@@ -1408,29 +1791,63 @@ h2 {
       0 13px 13px 13px;
   }
 
+
   .margin-line {
+
     left: 25px;
   }
 
+
   h2 {
+
     font-size: 1.8rem;
   }
 
+
   .add-group-btn {
+
     width: 35px;
+
     height: 35px;
   }
 
+
   .current-task-group-title {
+
     font-size: 1.6rem;
   }
 
+
+  .delete-group-btn {
+
+    width: 34px;
+
+    height: 34px;
+
+    font-size: 0.95rem;
+  }
+
+
+  .task-group-delete-btn {
+
+    width: 32px;
+
+    height: 32px;
+
+    font-size: 1rem;
+  }
+
+
   .input-row {
+
     gap: 5px;
   }
 
+
   .input-row button {
+
     min-width: 78px;
+
     max-width: 86px;
 
     font-size: 1rem;
@@ -1439,14 +1856,19 @@ h2 {
       7px 7px;
   }
 
+
   .input-row input {
+
     font-size: 1.1rem;
 
     padding:
       8px 9px;
   }
 
+
   .love {
+
     font-size: 1rem;
   }
+
 }
