@@ -2,65 +2,156 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
+
   <title>Список покупок и дел</title>
 
-  <!-- Подключение шрифтов -->
+  <!-- Шрифты -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@500;600;700&family=Neucha&display=swap" rel="stylesheet">
 
-  <!-- Подключение стилей -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@500;600;700&family=Neucha&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Стили -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+  <!-- ===================================== -->
+  <!-- ОСНОВНОЙ КОНТЕЙНЕР -->
+  <!-- ===================================== -->
+
   <div class="wrapper">
 
+
+    <!-- ===================================== -->
+    <!-- ЗАГОЛОВОК -->
+    <!-- ===================================== -->
+
     <header class="header">
-      <h1>Покупки и дела</h1>
+
+      <h1>
+        Покупки и дела
+      </h1>
+
     </header>
+
+
+    <!-- ===================================== -->
+    <!-- MAIN -->
+    <!-- ===================================== -->
 
     <main class="main">
 
       <div class="notebook-wrapper">
 
-        <!-- Вкладки блокнота -->
+
+        <!-- ===================================== -->
+        <!-- ВКЛАДКИ -->
+        <!-- ===================================== -->
+
         <div class="tabs">
 
-          <button class="tab-btn active" data-tab="tasks">
-            <span>Дела</span>
-            <span id="tasksBadge" class="badge">0</span>
+          <!-- ДЕЛА -->
+
+          <button
+            class="tab-btn active"
+            data-tab="tasks"
+            type="button"
+          >
+
+            <span>
+              Дела
+            </span>
+
+            <span
+              id="tasksBadge"
+              class="badge"
+            >
+              0
+            </span>
+
           </button>
 
-          <button class="tab-btn" data-tab="shopping">
-            <span>Покупки</span>
-            <span id="shoppingBadge" class="badge">0</span>
+
+          <!-- ПОКУПКИ -->
+
+          <button
+            class="tab-btn"
+            data-tab="shopping"
+            type="button"
+          >
+
+            <span>
+              Покупки
+            </span>
+
+            <span
+              id="shoppingBadge"
+              class="badge"
+            >
+              0
+            </span>
+
           </button>
 
-          <button class="tab-btn" data-tab="schedule">
-            <span>График</span>
+
+          <!-- ГРАФИК -->
+
+          <button
+            class="tab-btn"
+            data-tab="schedule"
+            type="button"
+          >
+
+            <span>
+              График
+            </span>
+
           </button>
 
         </div>
 
 
-        <!-- Лист блокнота -->
+        <!-- ===================================== -->
+        <!-- ЛИСТ БЛОКНОТА -->
+        <!-- ===================================== -->
+
         <div class="paper-container">
+
+          <!-- Красная линия тетради -->
 
           <div class="margin-line"></div>
 
 
           <!-- ===================================== -->
-          <!-- ДЕЛА -->
+          <!-- СЕКЦИЯ ДЕЛ -->
           <!-- ===================================== -->
 
-          <section id="tasksSection" class="tasks tab-content active">
+          <section
+            id="tasksSection"
+            class="tasks tab-content active"
+          >
+
+
+            <!-- Заголовок -->
 
             <div class="tasks-header">
 
-              <h2>Дела</h2>
+              <h2>
+                Дела
+              </h2>
+
+
+              <!-- Создать новый блок -->
 
               <button
                 id="addTaskGroupBtn"
@@ -74,21 +165,41 @@
             </div>
 
 
-            <div id="taskGroupsView">
-            </div>
+            <!-- ================================= -->
+            <!-- СПИСОК БЛОКОВ -->
+            <!-- ================================= -->
+
+            <div id="taskGroupsView"></div>
 
 
-            <div id="taskBlockView" class="task-block-view hidden">
+            <!-- ================================= -->
+            <!-- ОТКРЫТЫЙ БЛОК -->
+            <!-- ================================= -->
+
+            <div
+              id="taskBlockView"
+              class="task-block-view hidden"
+            >
+
+
+              <!-- Верхняя панель -->
 
               <div class="task-block-header">
+
+
+                <!-- Назад -->
 
                 <button
                   id="backToGroupsBtn"
                   class="back-groups-btn"
                   type="button"
+                  title="Назад"
                 >
                   ←
                 </button>
+
+
+                <!-- Название блока -->
 
                 <div
                   id="currentTaskGroupTitle"
@@ -97,15 +208,39 @@
                   Дела
                 </div>
 
+
+                <!-- Удалить текущий блок -->
+
+                <button
+                  id="deleteCurrentGroupBtn"
+                  class="delete-group-btn hidden"
+                  type="button"
+                  title="Удалить блок"
+                  aria-label="Удалить блок"
+                >
+                  🗑️
+                </button>
+
               </div>
 
 
-              <div id="taskListScroll" class="task-list-scroll">
+              <!-- ================================= -->
+              <!-- СПИСОК ДЕЛ -->
+              <!-- ================================= -->
+
+              <div
+                id="taskListScroll"
+                class="task-list-scroll"
+              >
 
                 <ol id="taskList"></ol>
 
               </div>
 
+
+              <!-- ================================= -->
+              <!-- ДОБАВЛЕНИЕ ДЕЛА -->
+              <!-- ================================= -->
 
               <div class="input-row">
 
@@ -113,7 +248,9 @@
                   id="taskInput"
                   type="text"
                   placeholder="Что нужно сделать..."
-                />
+                  autocomplete="off"
+                >
+
 
                 <button
                   id="addTaskBtn"
@@ -130,12 +267,20 @@
 
 
           <!-- ===================================== -->
-          <!-- ПОКУПКИ -->
+          <!-- СЕКЦИЯ ПОКУПОК -->
           <!-- ===================================== -->
 
-          <section id="shoppingSection" class="list tab-content">
+          <section
+            id="shoppingSection"
+            class="list tab-content"
+          >
 
-            <h2>Список покупок</h2>
+            <h2>
+              Список покупок
+            </h2>
+
+
+            <!-- Список покупок -->
 
             <div class="shopping-list-scroll">
 
@@ -143,13 +288,18 @@
 
             </div>
 
+
+            <!-- Добавление покупки -->
+
             <div class="input-row">
 
               <input
                 id="itemInput"
                 type="text"
                 placeholder="Купить..."
-              />
+                autocomplete="off"
+              >
+
 
               <button
                 id="addBtn"
@@ -164,21 +314,34 @@
 
 
           <!-- ===================================== -->
-          <!-- ГРАФИК -->
+          <!-- СЕКЦИЯ ГРАФИКА -->
           <!-- ===================================== -->
 
-          <section id="scheduleSection" class="schedule tab-content">
+          <section
+            id="scheduleSection"
+            class="schedule tab-content"
+          >
 
-            <h2>График работы</h2>
+            <h2>
+              График работы
+            </h2>
+
+
+            <!-- ================================= -->
+            <!-- ПЕРЕКЛЮЧЕНИЕ МЕСЯЦА -->
+            <!-- ================================= -->
 
             <div class="calendar-nav">
+
 
               <button
                 class="cal-btn"
                 id="prevMonthBtn"
+                type="button"
               >
                 ←
               </button>
+
 
               <div
                 class="cal-title"
@@ -187,9 +350,11 @@
                 Загрузка...
               </div>
 
+
               <button
                 class="cal-btn"
                 id="nextMonthBtn"
+                type="button"
               >
                 →
               </button>
@@ -197,25 +362,52 @@
             </div>
 
 
+            <!-- ================================= -->
+            <!-- ЛЕГЕНДА -->
+            <!-- ================================= -->
+
             <div class="cal-legend">
 
+
               <div class="leg-item">
-                <span class="leg-dot st-98"></span>
+
+                <span
+                  class="leg-dot st-98"
+                ></span>
+
                 98 отд.
+
               </div>
 
+
               <div class="leg-item">
-                <span class="leg-dot st-163"></span>
+
+                <span
+                  class="leg-dot st-163"
+                ></span>
+
                 163 отд.
+
               </div>
 
+
               <div class="leg-item">
-                <span class="leg-dot st-vh"></span>
+
+                <span
+                  class="leg-dot st-vh"
+                ></span>
+
                 ВХ
+
               </div>
+
 
             </div>
 
+
+            <!-- ================================= -->
+            <!-- КАЛЕНДАРЬ -->
+            <!-- ================================= -->
 
             <div
               class="cal-grid"
@@ -225,10 +417,18 @@
           </section>
 
 
-          <!-- Любовная надпись -->
+          <!-- ===================================== -->
+          <!-- ПОДПИСЬ -->
+          <!-- ===================================== -->
+
           <section class="love">
-            <span>Настюшка ❤️ Максюшка 🐶 Лялюшка</span>
+
+            <span>
+              Настюшка ❤️ Максюшка 🐶 Лялюшка
+            </span>
+
           </section>
+
 
         </div>
 
@@ -239,9 +439,9 @@
   </div>
 
 
-  <!-- ===================================== -->
-  <!-- МОДАЛКА СОЗДАНИЯ БЛОКА -->
-  <!-- ===================================== -->
+  <!-- ========================================= -->
+  <!-- МОДАЛКА СОЗДАНИЯ НОВОГО БЛОКА -->
+  <!-- ========================================= -->
 
   <div
     class="group-modal-overlay"
@@ -250,9 +450,15 @@
 
     <div class="group-modal-card">
 
+
+      <!-- Заголовок -->
+
       <div class="group-modal-title">
         Новый блок
       </div>
+
+
+      <!-- Название -->
 
       <input
         id="groupNameInput"
@@ -260,9 +466,14 @@
         type="text"
         maxlength="40"
         placeholder="Например: Работа"
-      />
+        autocomplete="off"
+      >
+
+
+      <!-- Кнопки -->
 
       <div class="group-modal-buttons">
+
 
         <button
           id="cancelGroupBtn"
@@ -272,6 +483,7 @@
           Отмена
         </button>
 
+
         <button
           id="saveGroupBtn"
           class="group-save-btn"
@@ -280,6 +492,7 @@
           Создать
         </button>
 
+
       </div>
 
     </div>
@@ -287,9 +500,9 @@
   </div>
 
 
-  <!-- ===================================== -->
-  <!-- МОДАЛКА ВЫБОРА ДНЯ -->
-  <!-- ===================================== -->
+  <!-- ========================================= -->
+  <!-- МОДАЛКА НАЗНАЧЕНИЯ СМЕНЫ -->
+  <!-- ========================================= -->
 
   <div
     class="modal-overlay"
@@ -298,6 +511,9 @@
 
     <div class="shift-modal-card">
 
+
+      <!-- Заголовок -->
+
       <div
         class="modal-title"
         id="shiftModalTitle"
@@ -305,44 +521,65 @@
         Назначить смену
       </div>
 
+
+      <!-- 98 -->
+
       <button
         class="shift-opt-btn opt-98"
         id="btnShift98"
+        type="button"
       >
         98 Отделение 🟦
       </button>
 
+
+      <!-- 163 -->
+
       <button
         class="shift-opt-btn opt-163"
         id="btnShift163"
+        type="button"
       >
         163 Отделение 🟨
       </button>
 
+
+      <!-- ВХ -->
+
       <button
         class="shift-opt-btn opt-vh"
         id="btnShiftVh"
+        type="button"
       >
         Выходной (ВХ) 🟩
       </button>
 
+
+      <!-- Сброс -->
+
       <button
         class="shift-opt-btn opt-reset"
         id="btnShiftReset"
+        type="button"
       >
         Сбросить день ✕
       </button>
+
 
     </div>
 
   </div>
 
 
-  <!-- Подключение скрипта -->
+  <!-- ========================================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ========================================= -->
+
   <script
     type="module"
     src="script.js"
   ></script>
+
 
 </body>
 </html>
