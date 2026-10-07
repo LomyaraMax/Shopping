@@ -5,7 +5,21 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-body, h1, h2, h3, p, ol, ul {
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ol,
+ul {
   margin: 0;
   padding: 0;
 }
@@ -14,73 +28,129 @@ body {
   background: #2d241e;
   background-image: radial-gradient(#3a2f28 1px, transparent 0);
   background-size: 24px 24px;
+
   min-height: 100vh;
+
   font-family: 'Neucha', 'Comfortaa', cursive, sans-serif;
   color: #2c221e;
-  padding: 20px 10px;
+
+  padding: 12px 8px;
+
+  overflow: hidden;
 }
 
+
+/* ========================================= */
+/* ОСНОВНОЙ КОНТЕЙНЕР */
+/* ========================================= */
+
 .wrapper {
+  width: 100%;
+  height: calc(100vh - 24px);
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 15px;
   width: 100%;
-  max-width: 480px;
+  max-width: 600px;
+
+  flex-shrink: 0;
+
+  margin-bottom: 8px;
 }
 
 .header h1 {
   font-family: 'Caveat', cursive;
-  font-size: 2.5rem;
+  font-size: 2.3rem;
+
   color: #f7e7ce;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+
+/* ========================================= */
+/* MAIN */
+/* ========================================= */
 
 .main {
   width: 100%;
-  max-width: 480px;
+  max-width: 600px;
+
+  flex: 1;
+  min-height: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Контейнер блокнота */
+
+/* ========================================= */
+/* БЛОКНОТ */
+/* ========================================= */
+
 .notebook-wrapper {
   width: 100%;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
+
+  min-height: 0;
 }
 
-/* Вкладки блокнота */
+
+/* ========================================= */
+/* ВКЛАДКИ */
+/* ========================================= */
+
 .tabs {
   display: flex;
-  gap: 6px;
-  padding-left: 45px;
+
+  gap: 5px;
+
+  padding-left: 35px;
+
   z-index: 2;
+
   margin-bottom: -1px;
+
+  flex-shrink: 0;
 }
 
 .tab-btn {
   background: #e2cb92;
+
   border: 1px solid #c9b075;
   border-bottom: none;
+
   color: #71420a;
+
   font-family: 'Neucha', cursive;
-  font-size: 1.25rem;
-  padding: 8px 14px 6px 14px;
+  font-size: 1.2rem;
+
+  padding: 7px 13px 5px;
+
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+
   cursor: pointer;
+
   display: flex;
   align-items: center;
-  gap: 6px;
+
+  gap: 5px;
+
   transition: all 0.2s ease;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.15);
+
+  box-shadow:
+    0 -2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .tab-btn:hover {
@@ -89,27 +159,49 @@ body {
 
 .tab-btn.active {
   background: #fef3c7;
+
   border-color: #ebda9d;
+
   color: #854d0e;
+
   font-weight: bold;
-  padding-top: 10px;
+
+  padding-top: 9px;
+
   margin-top: -3px;
-  box-shadow: 0 -4px 8px rgba(0,0,0,0.15);
+
+  box-shadow:
+    0 -4px 8px rgba(0, 0, 0, 0.15);
 }
+
+
+/* ========================================= */
+/* BADGE */
+/* ========================================= */
 
 .badge {
   background: #a16207;
+
   color: #fef3c7;
+
   border-radius: 12px;
-  min-width: 22px;
-  height: 22px;
-  padding: 0 6px;
+
+  min-width: 21px;
+  height: 21px;
+
+  padding: 0 5px;
+
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+
+  font-size: 0.85rem;
+
   line-height: 1;
+
   font-family: 'Comfortaa', sans-serif;
+
   transition: all 0.25s ease;
 }
 
@@ -118,325 +210,1243 @@ body {
   color: #fef3c7;
 }
 
-/* Лист жёлтой бумаги */
+
+/* ========================================= */
+/* ЛИСТ БЛОКНОТА */
+/* ========================================= */
+
 .paper-container {
   position: relative;
+
   width: 100%;
+  height: 100%;
+
+  min-height: 0;
+
   background-color: #fef3c7;
-  background-image: linear-gradient(#e5d5a1 1px, transparent 1px);
+
+  background-image:
+    linear-gradient(
+      #e5d5a1 1px,
+      transparent 1px
+    );
+
   background-size: 100% 32px;
-  border-radius: 0 16px 16px 16px;
-  padding: 25px 20px 25px 45px;
-  box-shadow: 
+
+  border-radius:
+    0 16px 16px 16px;
+
+  padding:
+    18px 16px 15px 40px;
+
+  box-shadow:
     0 10px 25px rgba(0, 0, 0, 0.4),
     inset 0 0 80px rgba(217, 178, 110, 0.3);
+
   border: 1px solid #ebda9d;
+
   display: flex;
   flex-direction: column;
-  gap: 20px;
+
   overflow: hidden;
+
   z-index: 1;
 }
 
+
+/* Красная линия слева */
+
 .margin-line {
   position: absolute;
+
   top: 0;
   bottom: 0;
-  left: 36px;
+
+  left: 31px;
+
   width: 2px;
+
   background-color: #f87171;
+
   opacity: 0.6;
+
+  pointer-events: none;
 }
+
+
+/* ========================================= */
+/* ВКЛАДКИ */
+/* ========================================= */
 
 .tab-content {
   display: none;
+
+  height: 100%;
+  min-height: 0;
 }
 
 .tab-content.active {
-  display: block;
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 0;
 }
+
+
+/* ========================================= */
+/* ЗАГОЛОВКИ */
+/* ========================================= */
 
 h2 {
   font-family: 'Caveat', cursive;
+
   font-size: 2rem;
+
   color: #854d0e;
-  margin-bottom: 12px;
+
+  margin-bottom: 10px;
+
   border-bottom: 2px dashed #eab308;
-  padding-bottom: 4px;
+
+  padding-bottom: 3px;
 }
 
-.tasks ol, .list ol {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
-}
 
-.tasks ol li, .list ol li {
+/* ========================================= */
+/* ЗАГОЛОВОК "ДЕЛА" + КНОПКА */
+/* ========================================= */
+
+.tasks-header {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+.tasks-header h2 {
+  flex: 1;
+}
+
+
+/* Кнопка плюс */
+
+.add-group-btn {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #a16207;
+
+  color: #fff7dc;
+
+  font-family: 'Comfortaa', sans-serif;
+
+  font-size: 1.6rem;
+
+  line-height: 1;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 6px rgba(161, 98, 7, 0.3);
+
+  transition: 0.2s;
+}
+
+.add-group-btn:active {
+  transform: scale(0.94);
+}
+
+
+/* ========================================= */
+/* БЛОКИ ДЕЛ */
+/* ========================================= */
+
+#taskGroupsView {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding-right: 4px;
+
+  padding-bottom: 5px;
+
+  scrollbar-width: thin;
+}
+
+#taskGroupsView::-webkit-scrollbar {
+  width: 5px;
+}
+
+#taskGroupsView::-webkit-scrollbar-thumb {
+  background: #c9a95c;
+
+  border-radius: 10px;
+}
+
+
+/* Карточка блока */
+
+.task-group-card {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.68);
+
+  border:
+    1px solid rgba(217, 178, 110, 0.6);
+
+  border-radius: 12px;
+
+  padding: 12px 13px;
+
+  margin-bottom: 9px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.05);
+
+  transition:
+    transform 0.15s,
+    background 0.15s;
+}
+
+.task-group-card:active {
+  transform: scale(0.985);
+
+  background:
+    rgba(255, 255, 255, 0.9);
+}
+
+
+.task-group-info {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.task-group-name {
+  font-family: 'Caveat', cursive;
+
+  font-size: 1.55rem;
+
+  font-weight: bold;
+
+  color: #854d0e;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+.task-group-count {
+  font-family: 'Neucha', cursive;
+
+  font-size: 1rem;
+
+  color: #97733c;
+}
+
+
+.task-group-arrow {
+  font-size: 1.5rem;
+
+  color: #a16207;
+
+  flex-shrink: 0;
+}
+
+
+/* ========================================= */
+/* ОТКРЫТЫЙ БЛОК */
+/* ========================================= */
+
+.task-block-view {
+  height: 100%;
+
+  min-height: 0;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* Верхняя панель блока */
+
+.task-block-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+
+  margin-bottom: 8px;
+}
+
+
+.back-groups-btn {
+  width: 38px;
+  height: 34px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #e2cb92;
+
+  color: #854d0e;
+
+  font-size: 1.35rem;
+
+  font-family: 'Comfortaa', sans-serif;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+
+.current-task-group-title {
+  flex: 1;
+
+  min-width: 0;
+
+  font-family: 'Caveat', cursive;
+
+  font-size: 1.75rem;
+
+  font-weight: bold;
+
+  color: #854d0e;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+/* ========================================= */
+/* СПИСОК ДЕЛ */
+/* ========================================= */
+
+.task-list-scroll {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding-right: 4px;
+
+  padding-bottom: 5px;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: #c9a95c transparent;
+}
+
+.task-list-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.task-list-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.task-list-scroll::-webkit-scrollbar-thumb {
+  background: #c9a95c;
+
+  border-radius: 10px;
+}
+
+
+/* ========================================= */
+/* СПИСКИ */
+/* ========================================= */
+
+.tasks ol,
+.list ol {
+  list-style: none;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+
+.tasks ol li,
+.list ol li {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
   flex-direction: row-reverse;
-  background: rgba(255, 255, 255, 0.65);
-  padding: 8px 12px;
+
+  gap: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.65);
+
+  padding:
+    8px 10px;
+
   border-radius: 8px;
-  border: 1px solid rgba(217, 178, 110, 0.5);
+
+  border:
+    1px solid rgba(217, 178, 110, 0.5);
+
   font-size: 1.25rem;
+
   color: #3f2c1d;
+
   transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.05);
+
   word-break: break-word;
 }
 
-.tasks ol li.fade-out, .list ol li.fade-out {
+
+.tasks ol li.fade-out,
+.list ol li.fade-out {
   opacity: 0;
-  transform: translateX(30px) scale(0.95);
+
+  transform:
+    translateX(30px)
+    scale(0.95);
 }
+
+
+/* ========================================= */
+/* CHECKBOX */
+/* ========================================= */
 
 .checkbox {
   appearance: none;
   -webkit-appearance: none;
+
   width: 22px;
   height: 22px;
-  border: 2px solid #854d0e;
+
+  border:
+    2px solid #854d0e;
+
   border-radius: 6px;
+
   outline: none;
+
   cursor: pointer;
+
   position: relative;
+
   background: #fff8e7;
+
   transition: all 0.2s ease;
+
   flex-shrink: 0;
 }
 
+
 .checkbox:checked {
   background-color: #ca8a04;
+
   border-color: #854d0e;
 }
 
+
 .checkbox:checked::after {
   content: '✓';
+
   position: absolute;
+
   top: -4px;
   left: 3px;
+
   color: #ffffff;
+
   font-size: 16px;
+
   font-weight: bold;
 }
 
+
+/* ========================================= */
+/* ПОЛЕ ДОБАВЛЕНИЯ */
+/* ========================================= */
+
 .input-row {
   display: flex;
-  gap: 8px;
+
+  gap: 6px;
+
   margin-top: 8px;
+
+  flex-shrink: 0;
+
+  width: 100%;
 }
 
+
 .input-row input {
+  min-width: 0;
+
   flex: 1;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1.5px solid #d9b26e;
-  padding: 10px 14px;
+
+  width: 0;
+
+  background:
+    rgba(255, 255, 255, 0.85);
+
+  border:
+    1.5px solid #d9b26e;
+
+  padding:
+    9px 11px;
+
   border-radius: 10px;
+
   font-family: 'Neucha', cursive;
-  font-size: 1.2rem;
+
+  font-size: 1.15rem;
+
   color: #2c221e;
+
   outline: none;
 }
+
 
 .input-row input::placeholder {
   color: #a1824a;
 }
 
+
 .input-row input:focus {
   background: #ffffff;
+
   border-color: #a16207;
 }
 
+
+/* Кнопка Добавить */
+
 .input-row button {
+  flex:
+    0 0 auto;
+
+  width: auto;
+
+  min-width: 82px;
+
+  max-width: 92px;
+
   background: #a16207;
+
   color: #fef3c7;
-  padding: 8px 16px;
+
+  padding:
+    7px 9px;
+
   border: none;
+
   border-radius: 10px;
+
   font-family: 'Neucha', cursive;
-  font-size: 1.2rem;
+
+  font-size: 1.05rem;
+
+  line-height: 1.1;
+
   cursor: pointer;
-  box-shadow: 0 3px 6px rgba(161, 98, 7, 0.3);
+
+  box-shadow:
+    0 3px 6px rgba(161, 98, 7, 0.3);
+
   transition: all 0.2s ease;
 }
 
+
 .input-row button:active {
   transform: translateY(1px);
+
   box-shadow: none;
 }
 
+
+/* ========================================= */
+/* ПРОКРУТКА ПОКУПОК */
+/* ========================================= */
+
+.shopping-list-scroll {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding-right: 4px;
+
+  padding-bottom: 5px;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: #c9a95c transparent;
+}
+
+.shopping-list-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.shopping-list-scroll::-webkit-scrollbar-thumb {
+  background: #c9a95c;
+
+  border-radius: 10px;
+}
+
+
+/* ========================================= */
+/* ЛЮБОВЬ */
+/* ========================================= */
+
 .love {
   text-align: center;
+
   background: #fde68a;
-  border: 2px dashed #f59e0b;
-  padding: 6px;
+
+  border:
+    2px dashed #f59e0b;
+
+  padding: 5px;
+
   border-radius: 12px;
+
   font-family: 'Caveat', cursive;
-  font-size: 1.1rem;
+
+  font-size: 1.05rem;
+
   color: #92400e;
-  margin-top: 10px;
+
+  margin-top: 8px;
+
+  flex-shrink: 0;
 }
 
-/* Календарь */
-.calendar-nav {
+
+/* ========================================= */
+/* МОДАЛКА СОЗДАНИЯ БЛОКА */
+/* ========================================= */
+
+.group-modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(45, 36, 30, 0.75);
+
+  backdrop-filter: blur(3px);
+
   display: flex;
-  justify-content: space-between;
+
+  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 6px 10px;
-  border-radius: 10px;
-  border: 1px solid #d9b26e;
+
+  z-index: 200;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease;
+
+  padding: 20px;
 }
 
-.cal-title {
+
+.group-modal-overlay.active {
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
+
+.group-modal-card {
+  width: 100%;
+
+  max-width: 330px;
+
+  background: #fef3c7;
+
+  border:
+    2px solid #a16207;
+
+  border-radius: 16px;
+
+  padding: 18px;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+
+.group-modal-title {
   font-family: 'Caveat', cursive;
-  font-size: 1.6rem;
+
+  font-size: 1.9rem;
+
   font-weight: bold;
+
   color: #854d0e;
+
+  text-align: center;
+
+  margin-bottom: 12px;
 }
 
-.cal-btn {
-  background: #a16207;
-  color: #fef3c7;
+
+.group-name-input {
+  width: 100%;
+
+  padding:
+    11px 12px;
+
+  border:
+    1.5px solid #d9b26e;
+
+  border-radius: 10px;
+
+  background: #fffdf5;
+
+  font-family: 'Neucha', cursive;
+
+  font-size: 1.2rem;
+
+  color: #2c221e;
+
+  outline: none;
+}
+
+
+.group-name-input:focus {
+  border-color: #a16207;
+}
+
+
+.group-modal-buttons {
+  display: flex;
+
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+
+.group-modal-buttons button {
+  flex: 1;
+
   border: none;
-  padding: 4px 12px;
-  border-radius: 8px;
-  font-size: 1.1rem;
+
+  border-radius: 10px;
+
+  padding: 9px;
+
+  font-family: 'Neucha', cursive;
+
+  font-size: 1.15rem;
+
   cursor: pointer;
 }
 
+
+.group-cancel-btn {
+  background: #e7d8ae;
+
+  color: #71420a;
+}
+
+
+.group-save-btn {
+  background: #a16207;
+
+  color: #fff7dc;
+}
+
+
+/* ========================================= */
+/* КАЛЕНДАРЬ */
+/* ========================================= */
+
+.calendar-nav {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.5);
+
+  padding:
+    6px 10px;
+
+  border-radius: 10px;
+
+  border:
+    1px solid #d9b26e;
+
+  flex-shrink: 0;
+}
+
+
+.cal-title {
+  font-family: 'Caveat', cursive;
+
+  font-size: 1.6rem;
+
+  font-weight: bold;
+
+  color: #854d0e;
+}
+
+
+.cal-btn {
+  background: #a16207;
+
+  color: #fef3c7;
+
+  border: none;
+
+  padding:
+    4px 12px;
+
+  border-radius: 8px;
+
+  font-size: 1.1rem;
+
+  cursor: pointer;
+}
+
+
 .cal-legend {
   display: flex;
+
   justify-content: space-around;
+
   font-size: 1.05rem;
+
   margin-bottom: 12px;
-  background: rgba(255,255,255,0.4);
+
+  background:
+    rgba(255, 255, 255, 0.4);
+
   padding: 4px;
+
   border-radius: 8px;
+
+  flex-shrink: 0;
 }
+
 
 .leg-item {
   display: flex;
+
   align-items: center;
+
   gap: 5px;
 }
+
 
 .leg-dot {
   width: 12px;
   height: 12px;
+
   border-radius: 3px;
 }
 
-.leg-dot.st-98 { background: #2563eb; }
-.leg-dot.st-163 { background: #d97706; }
-.leg-dot.st-vh { background: #16a34a; }
+
+.leg-dot.st-98 {
+  background: #2563eb;
+}
+
+
+.leg-dot.st-163 {
+  background: #d97706;
+}
+
+
+.leg-dot.st-vh {
+  background: #16a34a;
+}
+
 
 .cal-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+
+  grid-template-columns:
+    repeat(7, 1fr);
+
   gap: 5px;
+
   margin-bottom: 10px;
+
+  overflow-y: auto;
+
+  min-height: 0;
 }
+
 
 .cal-weekday {
   text-align: center;
+
   font-weight: bold;
+
   color: #a16207;
+
   font-size: 1.1rem;
 }
 
+
 .cal-day {
   aspect-ratio: 1;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid #d9b26e;
+
+  background:
+    rgba(255, 255, 255, 0.7);
+
+  border:
+    1px solid #d9b26e;
+
   border-radius: 8px;
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: space-between;
+
   padding: 4px;
+
   cursor: pointer;
 }
+
 
 .cal-day.empty {
   opacity: 0;
+
   pointer-events: none;
 }
+
 
 .cal-day-num {
   font-size: 0.95rem;
+
   font-weight: bold;
+
   align-self: flex-start;
+
   line-height: 1;
 }
+
 
 .cal-day-badge {
   font-size: 0.9rem;
+
   font-weight: bold;
+
   line-height: 1;
 }
 
-.cal-day.st-98 { background: #2563eb; color: #fff; border-color: #1d4ed8; }
-.cal-day.st-163 { background: #d97706; color: #fff; border-color: #b45309; }
-.cal-day.st-vh { background: #16a34a; color: #fff; border-color: #15803d; }
 
-/* Модалка выбора смены */
+.cal-day.st-98 {
+  background: #2563eb;
+
+  color: #fff;
+
+  border-color: #1d4ed8;
+}
+
+
+.cal-day.st-163 {
+  background: #d97706;
+
+  color: #fff;
+
+  border-color: #b45309;
+}
+
+
+.cal-day.st-vh {
+  background: #16a34a;
+
+  color: #fff;
+
+  border-color: #15803d;
+}
+
+
+/* ========================================= */
+/* МОДАЛКА ГРАФИКА */
+/* ========================================= */
+
 .modal-overlay {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(45, 36, 30, 0.75);
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    rgba(45, 36, 30, 0.75);
+
   backdrop-filter: blur(3px);
+
   display: flex;
+
   justify-content: center;
   align-items: center;
+
   z-index: 100;
+
   opacity: 0;
+
   pointer-events: none;
-  transition: opacity 0.2s ease;
+
+  transition:
+    opacity 0.2s ease;
 }
+
 
 .modal-overlay.active {
   opacity: 1;
+
   pointer-events: auto;
 }
 
+
 .shift-modal-card {
   background: #fef3c7;
-  border: 2px solid #a16207;
+
+  border:
+    2px solid #a16207;
+
   border-radius: 16px;
+
   padding: 18px;
+
   width: 270px;
+
   display: flex;
+
   flex-direction: column;
+
   gap: 10px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.5);
 }
+
 
 .modal-title {
   font-family: 'Caveat', cursive;
+
   font-size: 1.8rem;
+
   color: #854d0e;
+
   text-align: center;
+
   font-weight: bold;
 }
 
+
 .shift-opt-btn {
   padding: 10px;
+
   border-radius: 8px;
+
   border: none;
+
   color: #fff;
+
   font-family: 'Neucha', cursive;
+
   font-size: 1.2rem;
+
   cursor: pointer;
+
   text-align: center;
 }
 
-.opt-98 { background: #2563eb; }
-.opt-163 { background: #d97706; }
-.opt-vh { background: #16a34a; }
-.opt-reset { background: transparent; border: 1px solid #a16207; color: #dc2626; }
+
+.opt-98 {
+  background: #2563eb;
+}
+
+
+.opt-163 {
+  background: #d97706;
+}
+
+
+.opt-vh {
+  background: #16a34a;
+}
+
+
+.opt-reset {
+  background: transparent;
+
+  border:
+    1px solid #a16207;
+
+  color: #dc2626;
+}
+
+
+/* ========================================= */
+/* ТЕЛЕФОН */
+/* ========================================= */
+
+@media (max-width: 480px) {
+
+  body {
+    padding:
+      8px 5px;
+  }
+
+  .wrapper {
+    height:
+      calc(100vh - 16px);
+  }
+
+  .header {
+    margin-bottom: 5px;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .tabs {
+    padding-left: 25px;
+
+    gap: 3px;
+  }
+
+  .tab-btn {
+    font-size: 1.05rem;
+
+    padding:
+      6px 10px 5px;
+  }
+
+  .tab-btn.active {
+    padding-top: 8px;
+  }
+
+  .paper-container {
+    padding:
+      14px 10px 10px 32px;
+
+    border-radius:
+      0 13px 13px 13px;
+  }
+
+  .margin-line {
+    left: 25px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .add-group-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .current-task-group-title {
+    font-size: 1.6rem;
+  }
+
+  .input-row {
+    gap: 5px;
+  }
+
+  .input-row button {
+    min-width: 78px;
+    max-width: 86px;
+
+    font-size: 1rem;
+
+    padding:
+      7px 7px;
+  }
+
+  .input-row input {
+    font-size: 1.1rem;
+
+    padding:
+      8px 9px;
+  }
+
+  .love {
+    font-size: 1rem;
+  }
+}
