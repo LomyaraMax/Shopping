@@ -13,93 +13,344 @@
   <!-- Подключение стилей -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
   <div class="wrapper">
+
     <header class="header">
       <h1>Покупки и дела</h1>
     </header>
 
     <main class="main">
+
       <div class="notebook-wrapper">
+
         <!-- Вкладки блокнота -->
         <div class="tabs">
+
           <button class="tab-btn active" data-tab="tasks">
             <span>Дела</span>
             <span id="tasksBadge" class="badge">0</span>
           </button>
+
           <button class="tab-btn" data-tab="shopping">
             <span>Покупки</span>
             <span id="shoppingBadge" class="badge">0</span>
           </button>
+
           <button class="tab-btn" data-tab="schedule">
             <span>График</span>
           </button>
+
         </div>
+
 
         <!-- Лист блокнота -->
         <div class="paper-container">
+
           <div class="margin-line"></div>
 
-          <!-- Раздел: Дела -->
+
+          <!-- ===================================== -->
+          <!-- ДЕЛА -->
+          <!-- ===================================== -->
+
           <section id="tasksSection" class="tasks tab-content active">
-            <h2>Дела</h2>
-            <ol id="taskList"></ol>
-            <div class="input-row">
-              <input id="taskInput" type="text" placeholder="Что нужно сделать..." />
-              <button id="addTaskBtn" type="button">Добавить</button>
+
+            <!-- Заголовок раздела -->
+            <div class="tasks-header">
+
+              <h2>Дела</h2>
+
+              <button
+                id="addTaskGroupBtn"
+                class="add-group-btn"
+                type="button"
+                title="Создать блок"
+              >
+                +
+              </button>
+
             </div>
+
+
+            <!-- Навигация по блокам -->
+            <div id="taskGroupsView">
+
+              <!-- Сюда JavaScript добавит блоки -->
+
+            </div>
+
+
+            <!-- Открытый блок -->
+            <div id="taskBlockView" class="task-block-view hidden">
+
+              <div class="task-block-header">
+
+                <button
+                  id="backToGroupsBtn"
+                  class="back-groups-btn"
+                  type="button"
+                >
+                  ←
+                </button>
+
+                <div
+                  id="currentTaskGroupTitle"
+                  class="current-task-group-title"
+                >
+                  Дела
+                </div>
+
+              </div>
+
+
+              <!-- Список дел -->
+              <div id="taskListScroll" class="task-list-scroll">
+
+                <ol id="taskList"></ol>
+
+              </div>
+
+
+              <!-- Добавление дела -->
+              <div class="input-row">
+
+                <input
+                  id="taskInput"
+                  type="text"
+                  placeholder="Что нужно сделать..."
+                />
+
+                <button
+                  id="addTaskBtn"
+                  type="button"
+                >
+                  Добавить
+                </button>
+
+              </div>
+
+            </div>
+
           </section>
 
-          <!-- Раздел: Покупки -->
+
+          <!-- ===================================== -->
+          <!-- ПОКУПКИ -->
+          <!-- ===================================== -->
+
           <section id="shoppingSection" class="list tab-content">
+
             <h2>Список покупок</h2>
-            <ol id="itemList"></ol>
-            <div class="input-row">
-              <input id="itemInput" type="text" placeholder="Купить..." />
-              <button id="addBtn" type="button">Добавить</button>
+
+            <div class="shopping-list-scroll">
+
+              <ol id="itemList"></ol>
+
             </div>
+
+            <div class="input-row">
+
+              <input
+                id="itemInput"
+                type="text"
+                placeholder="Купить..."
+              />
+
+              <button
+                id="addBtn"
+                type="button"
+              >
+                Добавить
+              </button>
+
+            </div>
+
           </section>
 
-          <!-- Раздел: График -->
+
+          <!-- ===================================== -->
+          <!-- ГРАФИК -->
+          <!-- ===================================== -->
+
           <section id="scheduleSection" class="schedule tab-content">
+
             <h2>График работы</h2>
-            
+
             <div class="calendar-nav">
-              <button class="cal-btn" id="prevMonthBtn">←</button>
-              <div class="cal-title" id="calMonthTitle">Загрузка...</div>
-              <button class="cal-btn" id="nextMonthBtn">→</button>
+
+              <button
+                class="cal-btn"
+                id="prevMonthBtn"
+              >
+                ←
+              </button>
+
+              <div
+                class="cal-title"
+                id="calMonthTitle"
+              >
+                Загрузка...
+              </div>
+
+              <button
+                class="cal-btn"
+                id="nextMonthBtn"
+              >
+                →
+              </button>
+
             </div>
+
 
             <div class="cal-legend">
-              <div class="leg-item"><span class="leg-dot st-98"></span>98 отд.</div>
-              <div class="leg-item"><span class="leg-dot st-163"></span>163 отд.</div>
-              <div class="leg-item"><span class="leg-dot st-vh"></span>ВХ</div>
+
+              <div class="leg-item">
+                <span class="leg-dot st-98"></span>
+                98 отд.
+              </div>
+
+              <div class="leg-item">
+                <span class="leg-dot st-163"></span>
+                163 отд.
+              </div>
+
+              <div class="leg-item">
+                <span class="leg-dot st-vh"></span>
+                ВХ
+              </div>
+
             </div>
 
-            <div class="cal-grid" id="calGrid"></div>
+
+            <div
+              class="cal-grid"
+              id="calGrid"
+            ></div>
+
           </section>
 
+
+          <!-- Любовная надпись -->
           <section class="love">
             <span>Настюшка ❤️ Максюшка 🐶 Лялюшка</span>
           </section>
+
         </div>
+
       </div>
+
     </main>
+
   </div>
 
-  <!-- Модалка выбора дня -->
-  <div class="modal-overlay" id="shiftModalOverlay">
-    <div class="shift-modal-card">
-      <div class="modal-title" id="shiftModalTitle">Назначить смену</div>
-      <button class="shift-opt-btn opt-98" id="btnShift98">98 Отделение 🟦</button>
-      <button class="shift-opt-btn opt-163" id="btnShift163">163 Отделение 🟨</button>
-      <button class="shift-opt-btn opt-vh" id="btnShiftVh">Выходной (ВХ) 🟩</button>
-      <button class="shift-opt-btn opt-reset" id="btnShiftReset">Сбросить день ✕</button>
+
+  <!-- ===================================== -->
+  <!-- МОДАЛКА СОЗДАНИЯ БЛОКА -->
+  <!-- ===================================== -->
+
+  <div
+    class="group-modal-overlay"
+    id="groupModalOverlay"
+  >
+
+    <div class="group-modal-card">
+
+      <div class="group-modal-title">
+        Новый блок
+      </div>
+
+      <input
+        id="groupNameInput"
+        class="group-name-input"
+        type="text"
+        maxlength="40"
+        placeholder="Например: Работа"
+      />
+
+      <div class="group-modal-buttons">
+
+        <button
+          id="cancelGroupBtn"
+          class="group-cancel-btn"
+          type="button"
+        >
+          Отмена
+        </button>
+
+        <button
+          id="saveGroupBtn"
+          class="group-save-btn"
+          type="button"
+        >
+          Создать
+        </button>
+
+      </div>
+
     </div>
+
   </div>
 
-  <!-- Подключение скрипта (модуль) -->
-  <script type="module" src="script.js"></script>
+
+  <!-- ===================================== -->
+  <!-- МОДАЛКА ВЫБОРА ДНЯ -->
+  <!-- ===================================== -->
+
+  <div
+    class="modal-overlay"
+    id="shiftModalOverlay"
+  >
+
+    <div class="shift-modal-card">
+
+      <div
+        class="modal-title"
+        id="shiftModalTitle"
+      >
+        Назначить смену
+      </div>
+
+      <button
+        class="shift-opt-btn opt-98"
+        id="btnShift98"
+      >
+        98 Отделение 🟦
+      </button>
+
+      <button
+        class="shift-opt-btn opt-163"
+        id="btnShift163"
+      >
+        163 Отделение 🟨
+      </button>
+
+      <button
+        class="shift-opt-btn opt-vh"
+        id="btnShiftVh"
+      >
+        Выходной (ВХ) 🟩
+      </button>
+
+      <button
+        class="shift-opt-btn opt-reset"
+        id="btnShiftReset"
+      >
+        Сбросить день ✕
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Подключение скрипта -->
+  <script
+    type="module"
+    src="script.js"
+  ></script>
+
 </body>
 </html>
-
