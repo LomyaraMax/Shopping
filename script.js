@@ -12,48 +12,34 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 
-// ==========================================
-// 1. КОНФИГ ПРОЕКТА БЛОКНОТА
-// ==========================================
+// =====================================================
+// FIREBASE
+// =====================================================
 
 const notebookConfig = {
   apiKey: "AIzaSyBIM3ZzC-H4yqAS6F0ONmamGEU2yJiTq0",
-  authDomain:
-    "shopping-6b162.firebaseapp.com",
+  authDomain: "shopping-6b162.firebaseapp.com",
   databaseURL:
     "https://shopping-6b162-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId:
-    "shopping-6b162",
-  storageBucket:
-    "shopping-6b162.appspot.com",
-  messagingSenderId:
-    "91005141152",
-  appId:
-    "1:91005141152:web:c5f951bf20f604ac2e89c5"
+  projectId: "shopping-6b162",
+  storageBucket: "shopping-6b162.appspot.com",
+  messagingSenderId: "91005141152",
+  appId: "1:91005141152:web:c5f951bf20f604ac2e89c5"
 };
-
 
 const scheduleConfig = {
-  apiKey:
-    "AIzaSyArdBRpk8EyzBJ_Uruk2rYGzlzdS-Eaj50",
-  authDomain:
-    "mid-np-470dc.firebaseapp.com",
+  apiKey: "AIzaSyArdBRpk8EyzBJ_Uruk2rYGzlzdS-Eaj50",
+  authDomain: "mid-np-470dc.firebaseapp.com",
   databaseURL:
     "https://mid-np-470dc-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId:
-    "mid-np-470dc",
-  storageBucket:
-    "mid-np-470dc.firebasestorage.app",
-  messagingSenderId:
-    "1051368843938",
-  appId:
-    "1:1051368843938:web:bf019281005027580345fb"
+  projectId: "mid-np-470dc",
+  storageBucket: "mid-np-470dc.firebasestorage.app",
+  messagingSenderId: "1051368843938",
+  appId: "1:1051368843938:web:bf019281005027580345fb"
 };
-
 
 const notebookApp =
   initializeApp(notebookConfig);
-
 
 const scheduleApp =
   initializeApp(
@@ -61,18 +47,16 @@ const scheduleApp =
     "scheduleApp"
   );
 
-
 const db =
   getDatabase(notebookApp);
-
 
 const scheduleDb =
   getDatabase(scheduleApp);
 
 
-// ==========================================
-// FIREBASE REFERENCE
-// ==========================================
+// =====================================================
+// REFERENCES
+// =====================================================
 
 const listRef =
   ref(db, "shoppingList");
@@ -84,9 +68,9 @@ const taskGroupsRef =
   ref(db, "taskGroups");
 
 
-// ==========================================
+// =====================================================
 // DOM — ПОКУПКИ
-// ==========================================
+// =====================================================
 
 const itemInput =
   document.getElementById("itemInput");
@@ -98,9 +82,9 @@ const itemList =
   document.getElementById("itemList");
 
 
-// ==========================================
+// =====================================================
 // DOM — ДЕЛА
-// ==========================================
+// =====================================================
 
 const taskInput =
   document.getElementById("taskInput");
@@ -111,21 +95,13 @@ const addTaskBtn =
 const taskList =
   document.getElementById("taskList");
 
-
-// ==========================================
-// BADGES
-// ==========================================
-
 const tasksBadge =
   document.getElementById("tasksBadge");
 
-const shoppingBadge =
-  document.getElementById("shoppingBadge");
 
-
-// ==========================================
-// БЛОКИ ДЕЛ
-// ==========================================
+// =====================================================
+// DOM — БЛОКИ ДЕЛ
+// =====================================================
 
 const taskGroupsView =
   document.getElementById("taskGroupsView");
@@ -150,9 +126,9 @@ const deleteCurrentGroupBtn =
   );
 
 
-// ==========================================
-// МОДАЛКА СОЗДАНИЯ БЛОКА
-// ==========================================
+// =====================================================
+// DOM — МОДАЛКА СОЗДАНИЯ БЛОКА
+// =====================================================
 
 const groupModalOverlay =
   document.getElementById(
@@ -175,25 +151,24 @@ const cancelGroupBtn =
   );
 
 
-// ==========================================
-// СОСТОЯНИЕ БЛОКОВ
-// ==========================================
+// =====================================================
+// СОСТОЯНИЕ
+// =====================================================
 
 let taskGroupsData = {};
 
 let currentTaskGroupId = null;
 
 
-// ==========================================
+// =====================================================
 // ВКЛАДКИ
-// ==========================================
+// =====================================================
 
 const tabBtns =
   document.querySelectorAll(".tab-btn");
 
 const tabContents =
   document.querySelectorAll(".tab-content");
-
 
 tabBtns.forEach(btn => {
 
@@ -204,19 +179,15 @@ tabBtns.forEach(btn => {
       const targetTab =
         btn.dataset.tab;
 
-
       tabBtns.forEach(b => {
         b.classList.remove("active");
       });
-
 
       tabContents.forEach(c => {
         c.classList.remove("active");
       });
 
-
       btn.classList.add("active");
-
 
       if (targetTab === "tasks") {
 
@@ -225,20 +196,14 @@ tabBtns.forEach(btn => {
           .classList.add("active");
 
       }
-
-      else if (
-        targetTab === "shopping"
-      ) {
+      else if (targetTab === "shopping") {
 
         document
           .getElementById("shoppingSection")
           .classList.add("active");
 
       }
-
-      else if (
-        targetTab === "schedule"
-      ) {
+      else if (targetTab === "schedule") {
 
         document
           .getElementById("scheduleSection")
@@ -252,28 +217,26 @@ tabBtns.forEach(btn => {
 });
 
 
-// ==========================================
-// ДОБАВЛЕНИЕ ПОКУПКИ
-// ==========================================
+// =====================================================
+// ПОКУПКИ — ДОБАВЛЕНИЕ
+// =====================================================
 
 function addEntry(
-  refPath,
+  firebaseRef,
   input
 ) {
 
   const name =
     input.value.trim();
 
-
   if (!name) {
     return;
   }
 
-
   push(
-    refPath,
+    firebaseRef,
     {
-      name
+      name: name
     }
   )
     .then(() => {
@@ -286,6 +249,10 @@ function addEntry(
       console.error(
         "Ошибка при добавлении:",
         err
+      );
+
+      alert(
+        "Не удалось добавить. Проверь интернет."
       );
 
     });
@@ -323,9 +290,9 @@ itemInput.addEventListener(
 );
 
 
-// ==========================================
-// ОТОБРАЖЕНИЕ ПОКУПОК
-// ==========================================
+// =====================================================
+// ПОКУПКИ — ОТОБРАЖЕНИЕ
+// =====================================================
 
 function renderShoppingList() {
 
@@ -336,102 +303,86 @@ function renderShoppingList() {
       const data =
         snapshot.val();
 
-
       itemList.innerHTML = "";
-
 
       if (!data) {
 
         shoppingBadge.textContent = "0";
 
         return;
-      }
 
+      }
 
       const keys =
         Object.keys(data);
 
-
       shoppingBadge.textContent =
         keys.length;
 
-
-      for (let id in data) {
+      for (const id in data) {
 
         const item =
           data[id];
 
-
         const li =
           document.createElement("li");
-
 
         const checkbox =
           document.createElement("input");
 
-
         checkbox.type =
           "checkbox";
-
 
         checkbox.classList.add(
           "checkbox"
         );
 
-
         const label =
           document.createElement("span");
-
 
         label.textContent =
           item.name;
 
-
         checkbox.onchange =
           () => {
 
-            if (checkbox.checked) {
-
-              li.classList.add(
-                "fade-out"
-              );
-
-
-              setTimeout(() => {
-
-                const itemRef =
-                  ref(
-                    db,
-                    `shoppingList/${id}`
-                  );
-
-
-                remove(itemRef)
-                  .catch(err => {
-
-                    console.error(
-                      "Ошибка при удалении:",
-                      err
-                    );
-
-                  });
-
-              }, 300);
-
+            if (!checkbox.checked) {
+              return;
             }
 
-          };
+            li.classList.add(
+              "fade-out"
+            );
 
+            setTimeout(() => {
+
+              const itemRef =
+                ref(
+                  db,
+                  `shoppingList/${id}`
+                );
+
+              remove(itemRef)
+                .catch(err => {
+
+                  console.error(
+                    "Ошибка удаления покупки:",
+                    err
+                  );
+
+                });
+
+            }, 300);
+
+          };
 
         li.appendChild(
           checkbox
         );
 
-
         li.appendChild(
           label
         );
-
 
         itemList.appendChild(
           li
@@ -444,13 +395,12 @@ function renderShoppingList() {
 
 }
 
-
 renderShoppingList();
 
 
-// ==========================================
-// ЗАГРУЗКА БЛОКОВ ДЕЛ
-// ==========================================
+// =====================================================
+// БЛОКИ ДЕЛ — FIREBASE
+// =====================================================
 
 onValue(
   taskGroupsRef,
@@ -458,7 +408,6 @@ onValue(
 
     taskGroupsData =
       snapshot.val() || {};
-
 
     renderTaskGroups();
 
@@ -468,18 +417,18 @@ onValue(
 );
 
 
-// ==========================================
+// =====================================================
 // ОТОБРАЖЕНИЕ БЛОКОВ
-// ==========================================
+// =====================================================
 
 function renderTaskGroups() {
 
   taskGroupsView.innerHTML = "";
 
 
-  // ----------------------------------------
+  // -------------------------------
   // ОБЩИЕ ДЕЛА
-  // ----------------------------------------
+  // -------------------------------
 
   const defaultCard =
     createTaskGroupCard(
@@ -489,15 +438,14 @@ function renderTaskGroups() {
       true
     );
 
-
   taskGroupsView.appendChild(
     defaultCard
   );
 
 
-  // ----------------------------------------
-  // СОЗДАННЫЕ ПОЛЬЗОВАТЕЛЕМ БЛОКИ
-  // ----------------------------------------
+  // -------------------------------
+  // СОЗДАННЫЕ БЛОКИ
+  // -------------------------------
 
   Object.keys(taskGroupsData)
     .forEach(groupId => {
@@ -505,19 +453,15 @@ function renderTaskGroups() {
       const group =
         taskGroupsData[groupId];
 
-
       if (!group) {
         return;
       }
 
-
       const items =
         group.items || {};
 
-
       const count =
         Object.keys(items).length;
-
 
       const card =
         createTaskGroupCard(
@@ -526,7 +470,6 @@ function renderTaskGroups() {
           count,
           false
         );
-
 
       taskGroupsView.appendChild(
         card
@@ -537,9 +480,9 @@ function renderTaskGroups() {
 }
 
 
-// ==========================================
-// СОЗДАНИЕ КАРТОЧКИ БЛОКА
-// ==========================================
+// =====================================================
+// КАРТОЧКА БЛОКА
+// =====================================================
 
 function createTaskGroupCard(
   groupId,
@@ -551,18 +494,16 @@ function createTaskGroupCard(
   const card =
     document.createElement("div");
 
-
   card.className =
     "task-group-card";
 
 
-  // ----------------------------------------
+  // -------------------------------
   // ИНФОРМАЦИЯ
-  // ----------------------------------------
+  // -------------------------------
 
   const info =
     document.createElement("div");
-
 
   info.className =
     "task-group-info";
@@ -571,10 +512,8 @@ function createTaskGroupCard(
   const name =
     document.createElement("div");
 
-
   name.className =
     "task-group-name";
-
 
   name.textContent =
     groupName;
@@ -582,7 +521,6 @@ function createTaskGroupCard(
 
   const countText =
     document.createElement("div");
-
 
   countText.className =
     "task-group-count";
@@ -594,7 +532,6 @@ function createTaskGroupCard(
       "Общие дела";
 
   }
-
   else {
 
     countText.textContent =
@@ -606,66 +543,58 @@ function createTaskGroupCard(
 
 
   info.appendChild(name);
-
   info.appendChild(countText);
 
 
-  // ----------------------------------------
+  // -------------------------------
   // ПРАВАЯ ЧАСТЬ
-  // ----------------------------------------
+  // -------------------------------
 
   const actions =
     document.createElement("div");
-
 
   actions.className =
     "task-group-actions";
 
 
-  // Стрелка
+  // -------------------------------
+  // СТРЕЛКА
+  // -------------------------------
+
   const arrow =
     document.createElement("div");
-
 
   arrow.className =
     "task-group-arrow";
 
-
   arrow.textContent =
     "›";
-
 
   actions.appendChild(
     arrow
   );
 
 
-  // ----------------------------------------
+  // -------------------------------
   // КНОПКА УДАЛЕНИЯ
-  // Только для пользовательских блоков
-  // ----------------------------------------
+  // -------------------------------
 
   if (!isDefault) {
 
     const deleteBtn =
       document.createElement("button");
 
-
     deleteBtn.type =
       "button";
-
 
     deleteBtn.className =
       "task-group-delete-btn";
 
-
     deleteBtn.textContent =
       "🗑️";
 
-
     deleteBtn.title =
       "Удалить блок";
-
 
     deleteBtn.setAttribute(
       "aria-label",
@@ -675,24 +604,23 @@ function createTaskGroupCard(
 
     deleteBtn.addEventListener(
       "click",
-      e => {
+      async e => {
 
-        // Не открываем блок
+        // Очень важно:
+        // не открываем блок при нажатии корзины
+        e.preventDefault();
         e.stopPropagation();
-
 
         const confirmed =
           confirm(
             `Удалить блок «${groupName}» и все его дела?`
           );
 
-
         if (!confirmed) {
           return;
         }
 
-
-        deleteTaskGroup(
+        await deleteTaskGroup(
           groupId
         );
 
@@ -707,19 +635,13 @@ function createTaskGroupCard(
   }
 
 
-  card.appendChild(
-    info
-  );
+  card.appendChild(info);
+  card.appendChild(actions);
 
 
-  card.appendChild(
-    actions
-  );
-
-
-  // ----------------------------------------
+  // -------------------------------
   // ОТКРЫТИЕ БЛОКА
-  // ----------------------------------------
+  // -------------------------------
 
   card.addEventListener(
     "click",
@@ -740,9 +662,9 @@ function createTaskGroupCard(
 }
 
 
-// ==========================================
-// ОТКРЫТИЕ БЛОКА
-// ==========================================
+// =====================================================
+// ОТКРЫТЬ БЛОК
+// =====================================================
 
 function openTaskGroup(
   groupId,
@@ -753,13 +675,13 @@ function openTaskGroup(
   currentTaskGroupId =
     groupId;
 
-
   currentTaskGroupTitle.textContent =
     groupName;
 
 
-  // Показываем/скрываем
-  // кнопку удаления
+  // -------------------------------
+  // КНОПКА УДАЛЕНИЯ ВНУТРИ БЛОКА
+  // -------------------------------
 
   if (isDefault) {
 
@@ -768,7 +690,6 @@ function openTaskGroup(
     );
 
   }
-
   else {
 
     deleteCurrentGroupBtn.classList.remove(
@@ -781,7 +702,6 @@ function openTaskGroup(
   taskGroupsView.classList.add(
     "hidden"
   );
-
 
   taskBlockView.classList.remove(
     "hidden"
@@ -796,7 +716,6 @@ function openTaskGroup(
     renderDefaultTasks();
 
   }
-
   else {
 
     renderGroupTasks(
@@ -815,33 +734,31 @@ function openTaskGroup(
 }
 
 
-// ==========================================
-// НАЗАД К СПИСКУ БЛОКОВ
-// ==========================================
+// =====================================================
+// НАЗАД К БЛОКАМ
+// =====================================================
 
 backToGroupsBtn.addEventListener(
   "click",
-  () => {
+  async () => {
 
-    leaveCurrentTaskGroup();
+    await leaveCurrentTaskGroup();
 
   }
 );
 
 
-// ==========================================
-// ВЫХОД ИЗ ТЕКУЩЕГО БЛОКА
-// ==========================================
+// =====================================================
+// ВЫЙТИ ИЗ БЛОКА
+// =====================================================
 
-function leaveCurrentTaskGroup() {
+async function leaveCurrentTaskGroup() {
 
   const groupId =
     currentTaskGroupId;
 
 
-  // Общие дела никогда
-  // автоматически не удаляем
-
+  // Общие дела
   if (
     !groupId ||
     groupId === "default"
@@ -850,6 +767,7 @@ function leaveCurrentTaskGroup() {
     showTaskGroups();
 
     return;
+
   }
 
 
@@ -862,107 +780,94 @@ function leaveCurrentTaskGroup() {
     showTaskGroups();
 
     return;
+
   }
 
 
-  const groupRef =
-    ref(
-      db,
-      `taskGroups/${groupId}`
-    );
+  try {
+
+    // Получаем актуальное содержимое блока
+    const itemsRef =
+      ref(
+        db,
+        `taskGroups/${groupId}/items`
+      );
 
 
-  const itemsRef =
-    ref(
-      db,
-      `taskGroups/${groupId}/items`
-    );
+    const snapshot =
+      await new Promise(
+        resolve => {
+
+          onValue(
+            itemsRef,
+            resolve,
+            {
+              onlyOnce: true
+            }
+          );
+
+        }
+      );
 
 
-  /*
-    Проверяем Firebase ещё раз.
-
-    Это важно потому, что пользователь
-    может поставить галочку и сразу
-    нажать "назад", пока удаление дела
-    ещё выполняется.
-  */
-
-  onValue(
-    itemsRef,
-    snapshot => {
-
-      const data =
-        snapshot.val();
+    const items =
+      snapshot.val();
 
 
-      const hasItems =
-        data &&
-        Object.keys(data).length > 0;
+    const hasItems =
+      items &&
+      Object.keys(items).length > 0;
 
 
-      // Если дел больше нет —
-      // автоматически удаляем блок
+    // Если блок пустой —
+    // удаляем его полностью
+    if (!hasItems) {
 
-      if (!hasItems) {
+      await deleteTaskGroup(
+        groupId,
+        false
+      );
 
-        remove(groupRef)
-          .then(() => {
+      return;
 
-            showTaskGroups();
-
-          })
-          .catch(err => {
-
-            console.error(
-              "Ошибка при автоматическом удалении блока:",
-              err
-            );
-
-            showTaskGroups();
-
-          });
-
-        return;
-      }
-
-
-      // Если дела остались —
-      // просто возвращаемся назад
-
-      showTaskGroups();
-
-    },
-    {
-      onlyOnce: true
     }
-  );
+
+
+    showTaskGroups();
+
+  }
+  catch (error) {
+
+    console.error(
+      "Ошибка при выходе из блока:",
+      error
+    );
+
+    showTaskGroups();
+
+  }
 
 }
 
 
-// ==========================================
+// =====================================================
 // ПОКАЗАТЬ СПИСОК БЛОКОВ
-// ==========================================
+// =====================================================
 
 function showTaskGroups() {
 
   currentTaskGroupId =
     null;
 
-
   taskBlockView.classList.add(
     "hidden"
   );
-
 
   taskGroupsView.classList.remove(
     "hidden"
   );
 
-
   taskInput.value = "";
-
 
   deleteCurrentGroupBtn.classList.add(
     "hidden"
@@ -971,16 +876,22 @@ function showTaskGroups() {
 }
 
 
-// ==========================================
+// =====================================================
 // УДАЛЕНИЕ БЛОКА
-// ==========================================
+// =====================================================
 
-function deleteTaskGroup(
-  groupId
+async function deleteTaskGroup(
+  groupId,
+  returnToGroups = true
 ) {
 
   if (!groupId) {
-    return;
+    return false;
+  }
+
+
+  if (groupId === "default") {
+    return false;
   }
 
 
@@ -991,44 +902,91 @@ function deleteTaskGroup(
     );
 
 
-  remove(groupRef)
-    .then(() => {
+  try {
 
-      // Если пользователь удалил
-      // именно открытый блок
+    console.log(
+      "Удаляем блок:",
+      groupId
+    );
 
-      if (
-        currentTaskGroupId === groupId
-      ) {
 
-        showTaskGroups();
+    await remove(
+      groupRef
+    );
 
-      }
 
-    })
-    .catch(err => {
+    console.log(
+      "Блок успешно удалён:",
+      groupId
+    );
 
-      console.error(
-        "Ошибка при удалении блока:",
-        err
+
+    // Если удалили открытый блок
+    if (
+      currentTaskGroupId === groupId
+    ) {
+
+      currentTaskGroupId =
+        null;
+
+      taskBlockView.classList.add(
+        "hidden"
       );
 
-      alert(
-        "Не удалось удалить блок. Проверь подключение к интернету."
+      taskGroupsView.classList.remove(
+        "hidden"
       );
 
-    });
+      taskInput.value = "";
+
+      deleteCurrentGroupBtn.classList.add(
+        "hidden"
+      );
+
+    }
+    else if (returnToGroups) {
+
+      // Просто обновляем интерфейс
+      renderTaskGroups();
+
+    }
+
+
+    return true;
+
+  }
+  catch (error) {
+
+    console.error(
+      "ОШИБКА УДАЛЕНИЯ БЛОКА:",
+      error
+    );
+
+
+    alert(
+      "Не удалось удалить блок.\n\n" +
+      "Проверь правила Firebase Realtime Database."
+    );
+
+
+    return false;
+
+  }
 
 }
 
 
-// ==========================================
+// =====================================================
 // УДАЛЕНИЕ ОТКРЫТОГО БЛОКА
-// ==========================================
+// =====================================================
 
 deleteCurrentGroupBtn.addEventListener(
   "click",
-  () => {
+  async e => {
+
+    e.preventDefault();
+    e.stopPropagation();
+
 
     const groupId =
       currentTaskGroupId;
@@ -1038,7 +996,9 @@ deleteCurrentGroupBtn.addEventListener(
       !groupId ||
       groupId === "default"
     ) {
+
       return;
+
     }
 
 
@@ -1062,7 +1022,7 @@ deleteCurrentGroupBtn.addEventListener(
     }
 
 
-    deleteTaskGroup(
+    await deleteTaskGroup(
       groupId
     );
 
@@ -1070,9 +1030,9 @@ deleteCurrentGroupBtn.addEventListener(
 );
 
 
-// ==========================================
+// =====================================================
 // ОБЩИЕ ДЕЛА
-// ==========================================
+// =====================================================
 
 function renderDefaultTasks() {
 
@@ -1083,7 +1043,9 @@ function renderDefaultTasks() {
       if (
         currentTaskGroupId !== "default"
       ) {
+
         return;
+
       }
 
 
@@ -1099,10 +1061,11 @@ function renderDefaultTasks() {
         updateTasksBadge();
 
         return;
+
       }
 
 
-      for (let id in data) {
+      for (const id in data) {
 
         createTaskElement(
           id,
@@ -1121,9 +1084,9 @@ function renderDefaultTasks() {
 }
 
 
-// ==========================================
-// ДЕЛА В СОЗДАННОМ БЛОКЕ
-// ==========================================
+// =====================================================
+// ДЕЛА ВНУТРИ БЛОКА
+// =====================================================
 
 function renderGroupTasks(
   groupId
@@ -1143,7 +1106,9 @@ function renderGroupTasks(
       if (
         currentTaskGroupId !== groupId
       ) {
+
         return;
+
       }
 
 
@@ -1159,10 +1124,11 @@ function renderGroupTasks(
         updateTasksBadge();
 
         return;
+
       }
 
 
-      for (let id in data) {
+      for (const id in data) {
 
         createTaskElement(
           id,
@@ -1181,9 +1147,9 @@ function renderGroupTasks(
 }
 
 
-// ==========================================
-// СОЗДАНИЕ ЭЛЕМЕНТА ДЕЛА
-// ==========================================
+// =====================================================
+// ЭЛЕМЕНТ ДЕЛА
+// =====================================================
 
 function createTaskElement(
   id,
@@ -1198,10 +1164,8 @@ function createTaskElement(
   const checkbox =
     document.createElement("input");
 
-
   checkbox.type =
     "checkbox";
-
 
   checkbox.classList.add(
     "checkbox"
@@ -1210,7 +1174,6 @@ function createTaskElement(
 
   const label =
     document.createElement("span");
-
 
   label.textContent =
     item.name;
@@ -1245,7 +1208,6 @@ function createTaskElement(
             );
 
         }
-
         else {
 
           itemRef =
@@ -1261,7 +1223,7 @@ function createTaskElement(
           .catch(err => {
 
             console.error(
-              "Ошибка при удалении:",
+              "Ошибка при удалении дела:",
               err
             );
 
@@ -1276,7 +1238,6 @@ function createTaskElement(
     checkbox
   );
 
-
   li.appendChild(
     label
   );
@@ -1289,9 +1250,9 @@ function createTaskElement(
 }
 
 
-// ==========================================
-// ДОБАВЛЕНИЕ ДЕЛА
-// ==========================================
+// =====================================================
+// ДОБАВИТЬ ДЕЛО
+// =====================================================
 
 addTaskBtn.addEventListener(
   "click",
@@ -1324,10 +1285,7 @@ function addCurrentTask() {
   }
 
 
-  // ----------------------------------------
-  // ОБЩИЕ ДЕЛА
-  // ----------------------------------------
-
+  // Общие дела
   if (
     currentTaskGroupId === "default"
   ) {
@@ -1335,7 +1293,7 @@ function addCurrentTask() {
     push(
       tasksRef,
       {
-        name
+        name: name
       }
     )
       .then(() => {
@@ -1346,7 +1304,7 @@ function addCurrentTask() {
       .catch(err => {
 
         console.error(
-          "Ошибка при добавлении:",
+          "Ошибка добавления дела:",
           err
         );
 
@@ -1354,13 +1312,11 @@ function addCurrentTask() {
 
 
     return;
+
   }
 
 
-  // ----------------------------------------
-  // СОЗДАННЫЙ БЛОК
-  // ----------------------------------------
-
+  // Если блок не открыт
   if (!currentTaskGroupId) {
     return;
   }
@@ -1376,7 +1332,7 @@ function addCurrentTask() {
   push(
     groupTasksRef,
     {
-      name
+      name: name
     }
   )
     .then(() => {
@@ -1387,7 +1343,7 @@ function addCurrentTask() {
     .catch(err => {
 
       console.error(
-        "Ошибка при добавлении:",
+        "Ошибка добавления дела:",
         err
       );
 
@@ -1396,9 +1352,9 @@ function addCurrentTask() {
 }
 
 
-// ==========================================
-// СОЗДАНИЕ НОВОГО БЛОКА
-// ==========================================
+// =====================================================
+// СОЗДАНИЕ БЛОКА
+// =====================================================
 
 addTaskGroupBtn.addEventListener(
   "click",
@@ -1409,7 +1365,6 @@ addTaskGroupBtn.addEventListener(
 function openGroupModal() {
 
   groupNameInput.value = "";
-
 
   groupModalOverlay.classList.add(
     "active"
@@ -1476,10 +1431,6 @@ groupNameInput.addEventListener(
 );
 
 
-// ==========================================
-// СОЗДАНИЕ БЛОКА В FIREBASE
-// ==========================================
-
 function createTaskGroup() {
 
   const name =
@@ -1498,7 +1449,7 @@ function createTaskGroup() {
   set(
     newGroupRef,
     {
-      name
+      name: name
     }
   )
     .then(() => {
@@ -1509,8 +1460,13 @@ function createTaskGroup() {
     .catch(err => {
 
       console.error(
-        "Ошибка при создании блока:",
+        "Ошибка создания блока:",
         err
+      );
+
+
+      alert(
+        "Не удалось создать блок."
       );
 
     });
@@ -1518,13 +1474,14 @@ function createTaskGroup() {
 }
 
 
-// ==========================================
-// BADGE ДЕЛ
-// ==========================================
+// =====================================================
+// СЧЁТЧИК ДЕЛ
+// =====================================================
 
 function updateTasksBadge() {
 
-  let total = 0;
+  let total =
+    0;
 
 
   onValue(
@@ -1543,7 +1500,8 @@ function updateTasksBadge() {
       }
 
 
-      let groupsTotal = 0;
+      let groupsTotal =
+        0;
 
 
       Object.keys(taskGroupsData)
@@ -1580,21 +1538,18 @@ function updateTasksBadge() {
 }
 
 
-// ==========================================
+// =====================================================
 // КАЛЕНДАРЬ
-// ==========================================
+// =====================================================
 
 let calCurrentDate =
   new Date();
 
-
 let selectedCalDay =
   null;
 
-
 let calScheduleData =
   {};
-
 
 let activeScheduleUnsub =
   null;
@@ -1616,10 +1571,6 @@ const MONTH_NAMES = [
 ];
 
 
-// ==========================================
-// КЛЮЧ МЕСЯЦА
-// ==========================================
-
 function getCalMonthKey() {
 
   const yyyy =
@@ -1636,10 +1587,6 @@ function getCalMonthKey() {
 
 }
 
-
-// ==========================================
-// ИНИЦИАЛИЗАЦИЯ КАЛЕНДАРЯ
-// ==========================================
 
 function initScheduleCalendar() {
 
@@ -1675,7 +1622,6 @@ function initScheduleCalendar() {
         calScheduleData =
           snap.val() || {};
 
-
         renderScheduleGrid();
 
       }
@@ -1683,10 +1629,6 @@ function initScheduleCalendar() {
 
 }
 
-
-// ==========================================
-// ОТРИСОВКА КАЛЕНДАРЯ
-// ==========================================
 
 function renderScheduleGrid() {
 
@@ -1715,14 +1657,11 @@ function renderScheduleGrid() {
           "div"
         );
 
-
       h.className =
         "cal-weekday";
 
-
       h.textContent =
         d;
-
 
       grid.appendChild(
         h
@@ -1733,7 +1672,6 @@ function renderScheduleGrid() {
 
   const year =
     calCurrentDate.getFullYear();
-
 
   const month =
     calCurrentDate.getMonth();
@@ -1757,7 +1695,6 @@ function renderScheduleGrid() {
     ).getDate();
 
 
-  // Пустые клетки
   for (
     let i = 0;
     i < firstDayIndex;
@@ -1769,10 +1706,8 @@ function renderScheduleGrid() {
         "div"
       );
 
-
     empty.className =
       "cal-day empty";
-
 
     grid.appendChild(
       empty
@@ -1781,7 +1716,6 @@ function renderScheduleGrid() {
   }
 
 
-  // Дни месяца
   for (
     let day = 1;
     day <= daysInMonth;
@@ -1792,7 +1726,6 @@ function renderScheduleGrid() {
       document.createElement(
         "div"
       );
-
 
     cell.className =
       "cal-day";
@@ -1836,10 +1769,8 @@ function renderScheduleGrid() {
         "span"
       );
 
-
     numSpan.className =
       "cal-day-num";
-
 
     numSpan.textContent =
       day;
@@ -1849,7 +1780,6 @@ function renderScheduleGrid() {
       document.createElement(
         "span"
       );
-
 
     badgeSpan.className =
       "cal-day-badge";
@@ -1883,7 +1813,6 @@ function renderScheduleGrid() {
       numSpan
     );
 
-
     cell.appendChild(
       badgeSpan
     );
@@ -1904,9 +1833,9 @@ function renderScheduleGrid() {
 }
 
 
-// ==========================================
-// ПРЕДЫДУЩИЙ МЕСЯЦ
-// ==========================================
+// =====================================================
+// КАЛЕНДАРЬ — МЕСЯЦЫ
+// =====================================================
 
 document
   .getElementById("prevMonthBtn")
@@ -1918,16 +1847,11 @@ document
         calCurrentDate.getMonth() - 1
       );
 
-
       initScheduleCalendar();
 
     }
   );
 
-
-// ==========================================
-// СЛЕДУЮЩИЙ МЕСЯЦ
-// ==========================================
 
 document
   .getElementById("nextMonthBtn")
@@ -1939,16 +1863,15 @@ document
         calCurrentDate.getMonth() + 1
       );
 
-
       initScheduleCalendar();
 
     }
   );
 
 
-// ==========================================
-// МОДАЛКА ГРАФИКА
-// ==========================================
+// =====================================================
+// МОДАЛКА СМЕНЫ
+// =====================================================
 
 const shiftModalOverlay =
   document.getElementById(
@@ -2002,9 +1925,9 @@ shiftModalOverlay.addEventListener(
 );
 
 
-// ==========================================
+// =====================================================
 // УСТАНОВКА СМЕНЫ
-// ==========================================
+// =====================================================
 
 function setShift(type) {
 
@@ -2029,7 +1952,6 @@ function setShift(type) {
     remove(dayRef);
 
   }
-
   else {
 
     set(
@@ -2044,10 +1966,6 @@ function setShift(type) {
 
 }
 
-
-// ==========================================
-// КНОПКИ ГРАФИКА
-// ==========================================
 
 document
   .getElementById("btnShift98")
@@ -2081,8 +1999,8 @@ document
   );
 
 
-// ==========================================
+// =====================================================
 // ЗАПУСК
-// ==========================================
+// =====================================================
 
 initScheduleCalendar();
