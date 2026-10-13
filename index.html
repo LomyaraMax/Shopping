@@ -2,584 +2,93 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Список покупок и дел</title>
-
-  <!-- Шрифты -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@500;600;700&family=Neucha&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- Стили -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comfortaa:wght@500;600;700&family=Neucha&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-  <!-- ===================================== -->
-  <!-- ОСНОВНОЙ КОНТЕЙНЕР -->
-  <!-- ===================================== -->
-
   <div class="wrapper">
-
-
-    <!-- ===================================== -->
-    <!-- ЗАГОЛОВОК -->
-    <!-- ===================================== -->
-
-    <header class="header">
-
-      <h1>
-        Покупки и дела
-      </h1>
-
-    </header>
-
-
-    <!-- ===================================== -->
-    <!-- MAIN -->
-    <!-- ===================================== -->
-
+    <header class="header"><h1>Покупки и дела</h1></header>
     <main class="main">
-
       <div class="notebook-wrapper">
-
-
-        <!-- ===================================== -->
-        <!-- ВКЛАДКИ -->
-        <!-- ===================================== -->
-
         <div class="tabs">
-
-          <!-- ДЕЛА -->
-
-          <button
-            class="tab-btn active"
-            data-tab="tasks"
-            type="button"
-          >
-
-            <span>
-              Дела
-            </span>
-
-            <span
-              id="tasksBadge"
-              class="badge"
-            >
-              0
-            </span>
-
-          </button>
-
-
-          <!-- ПОКУПКИ -->
-
-          <button
-            class="tab-btn"
-            data-tab="shopping"
-            type="button"
-          >
-
-            <span>
-              Покупки
-            </span>
-
-            <span
-              id="shoppingBadge"
-              class="badge"
-            >
-              0
-            </span>
-
-          </button>
-
-
-          <!-- ГРАФИК -->
-
-          <button
-            class="tab-btn"
-            data-tab="schedule"
-            type="button"
-          >
-
-            <span>
-              График
-            </span>
-
-          </button>
-
+          <button class="tab-btn active" data-tab="tasks" type="button"><span>Дела</span><span id="tasksBadge" class="badge">0</span></button>
+          <button class="tab-btn" data-tab="shopping" type="button"><span>Покупки</span><span id="shoppingBadge" class="badge">0</span></button>
+          <button class="tab-btn" data-tab="schedule" type="button"><span>График</span></button>
         </div>
-
-
-        <!-- ===================================== -->
-        <!-- ЛИСТ БЛОКНОТА -->
-        <!-- ===================================== -->
-
         <div class="paper-container">
-
-          <!-- Красная линия тетради -->
-
           <div class="margin-line"></div>
-
-
-          <!-- ===================================== -->
-          <!-- СЕКЦИЯ ДЕЛ -->
-          <!-- ===================================== -->
-
-          <section
-            id="tasksSection"
-            class="tasks tab-content active"
-          >
-
-
-            <!-- Заголовок -->
-
+          <section id="tasksSection" class="tasks tab-content active">
             <div class="tasks-header">
-
-              <h2>
-                Дела
-              </h2>
-
-
-              <!-- Создать новый блок -->
-
-              <button
-                id="addTaskGroupBtn"
-                class="add-group-btn"
-                type="button"
-                title="Создать блок"
-              >
-                +
-              </button>
-
+              <h2>Дела</h2>
+              <button id="addTaskGroupBtn" class="add-group-btn" type="button" title="Создать блок">+</button>
             </div>
-
-
-            <!-- ================================= -->
-            <!-- СПИСОК БЛОКОВ -->
-            <!-- ================================= -->
-
             <div id="taskGroupsView"></div>
-
-
-            <!-- ================================= -->
-            <!-- ОТКРЫТЫЙ БЛОК -->
-            <!-- ================================= -->
-
-            <div
-              id="taskBlockView"
-              class="task-block-view hidden"
-            >
-
-
-              <!-- Верхняя панель -->
-
+            <div id="taskBlockView" class="task-block-view hidden">
               <div class="task-block-header">
-
-
-                <!-- Назад -->
-
-                <button
-                  id="backToGroupsBtn"
-                  class="back-groups-btn"
-                  type="button"
-                  title="Назад"
-                >
-                  ←
-                </button>
-
-
-                <!-- Название блока -->
-
-                <div
-                  id="currentTaskGroupTitle"
-                  class="current-task-group-title"
-                >
-                  Дела
-                </div>
-
-
-                <!-- Удалить текущий блок -->
-
-                <button
-                  id="deleteCurrentGroupBtn"
-                  class="delete-group-btn hidden"
-                  type="button"
-                  title="Удалить блок"
-                  aria-label="Удалить блок"
-                >
-                  🗑️
-                </button>
-
+                <button id="backToGroupsBtn" class="back-groups-btn" type="button" title="Назад">←</button>
+                <div id="currentTaskGroupTitle" class="current-task-group-title">Дела</div>
+                <button id="deleteCurrentGroupBtn" class="delete-group-btn hidden" type="button" title="Удалить блок" aria-label="Удалить блок">🗑️</button>
               </div>
-
-
-              <!-- ================================= -->
-              <!-- СПИСОК ДЕЛ -->
-              <!-- ================================= -->
-
-              <div
-                id="taskListScroll"
-                class="task-list-scroll"
-              >
-
-                <ol id="taskList"></ol>
-
-              </div>
-
-
-              <!-- ================================= -->
-              <!-- ДОБАВЛЕНИЕ ДЕЛА -->
-              <!-- ================================= -->
-
+              <div id="taskListScroll" class="task-list-scroll"><ol id="taskList"></ol></div>
               <div class="input-row">
-
-                <input
-                  id="taskInput"
-                  type="text"
-                  placeholder="Что нужно сделать..."
-                  autocomplete="off"
-                >
-
-
-                <button
-                  id="addTaskBtn"
-                  type="button"
-                >
-                  Добавить
-                </button>
-
+                <input id="taskInput" type="text" placeholder="Что нужно сделать..." autocomplete="off">
+                <button id="addTaskBtn" type="button">Добавить</button>
               </div>
-
             </div>
-
           </section>
-
-
-          <!-- ===================================== -->
-          <!-- СЕКЦИЯ ПОКУПОК -->
-          <!-- ===================================== -->
-
-          <section
-            id="shoppingSection"
-            class="list tab-content"
-          >
-
-            <h2>
-              Список покупок
-            </h2>
-
-
-            <!-- Список покупок -->
-
-            <div class="shopping-list-scroll">
-
-              <ol id="itemList"></ol>
-
-            </div>
-
-
-            <!-- Добавление покупки -->
-
+          <section id="shoppingSection" class="list tab-content">
+            <h2>Список покупок</h2>
+            <div class="shopping-list-scroll"><ol id="itemList"></ol></div>
             <div class="input-row">
-
-              <input
-                id="itemInput"
-                type="text"
-                placeholder="Купить..."
-                autocomplete="off"
-              >
-
-
-              <button
-                id="addBtn"
-                type="button"
-              >
-                Добавить
-              </button>
-
+              <input id="itemInput" type="text" placeholder="Купить..." autocomplete="off">
+              <button id="addBtn" type="button">Добавить</button>
             </div>
-
           </section>
-
-
-          <!-- ===================================== -->
-          <!-- СЕКЦИЯ ГРАФИКА -->
-          <!-- ===================================== -->
-
-          <section
-            id="scheduleSection"
-            class="schedule tab-content"
-          >
-
-            <h2>
-              График работы
-            </h2>
-
-
-            <!-- ================================= -->
-            <!-- ПЕРЕКЛЮЧЕНИЕ МЕСЯЦА -->
-            <!-- ================================= -->
-
+          <section id="scheduleSection" class="schedule tab-content">
+            <h2>График работы</h2>
             <div class="calendar-nav">
-
-
-              <button
-                class="cal-btn"
-                id="prevMonthBtn"
-                type="button"
-              >
-                ←
-              </button>
-
-
-              <div
-                class="cal-title"
-                id="calMonthTitle"
-              >
-                Загрузка...
-              </div>
-
-
-              <button
-                class="cal-btn"
-                id="nextMonthBtn"
-                type="button"
-              >
-                →
-              </button>
-
+              <button class="cal-btn" id="prevMonthBtn" type="button">←</button>
+              <div class="cal-title" id="calMonthTitle">Загрузка...</div>
+              <button class="cal-btn" id="nextMonthBtn" type="button">→</button>
             </div>
-
-
-            <!-- ================================= -->
-            <!-- ЛЕГЕНДА -->
-            <!-- ================================= -->
-
             <div class="cal-legend">
-
-
-              <div class="leg-item">
-
-                <span
-                  class="leg-dot st-98"
-                ></span>
-
-                98 отд.
-
-              </div>
-
-
-              <div class="leg-item">
-
-                <span
-                  class="leg-dot st-163"
-                ></span>
-
-                163 отд.
-
-              </div>
-
-
-              <div class="leg-item">
-
-                <span
-                  class="leg-dot st-vh"
-                ></span>
-
-                ВХ
-
-              </div>
-
-
+              <div class="leg-item"><span class="leg-dot st-98"></span>98 отд.</div>
+              <div class="leg-item"><span class="leg-dot st-163"></span>163 отд.</div>
+              <div class="leg-item"><span class="leg-dot st-vh"></span>ВХ</div>
             </div>
-
-
-            <!-- ================================= -->
-            <!-- КАЛЕНДАРЬ -->
-            <!-- ================================= -->
-
-            <div
-              class="cal-grid"
-              id="calGrid"
-            ></div>
-
+            <div class="cal-grid" id="calGrid"></div>
           </section>
-
-
-          <!-- ===================================== -->
-          <!-- ПОДПИСЬ -->
-          <!-- ===================================== -->
-
-          <section class="love">
-
-            <span>
-              Настюшка ❤️ Максюшка 🐶 Лялюшка
-            </span>
-
-          </section>
-
-
+          <section class="love"><span>Настюшка ❤️ Максюшка 🐶 Лялюшка</span></section>
         </div>
-
       </div>
-
     </main>
-
   </div>
 
-
-  <!-- ========================================= -->
-  <!-- МОДАЛКА СОЗДАНИЯ НОВОГО БЛОКА -->
-  <!-- ========================================= -->
-
-  <div
-    class="group-modal-overlay"
-    id="groupModalOverlay"
-  >
-
+  <div class="group-modal-overlay" id="groupModalOverlay">
     <div class="group-modal-card">
-
-
-      <!-- Заголовок -->
-
-      <div class="group-modal-title">
-        Новый блок
-      </div>
-
-
-      <!-- Название -->
-
-      <input
-        id="groupNameInput"
-        class="group-name-input"
-        type="text"
-        maxlength="40"
-        placeholder="Например: Работа"
-        autocomplete="off"
-      >
-
-
-      <!-- Кнопки -->
-
+      <div class="group-modal-title">Новый блок</div>
+      <input id="groupNameInput" class="group-name-input" type="text" maxlength="40" placeholder="Например: Работа" autocomplete="off">
       <div class="group-modal-buttons">
-
-
-        <button
-          id="cancelGroupBtn"
-          class="group-cancel-btn"
-          type="button"
-        >
-          Отмена
-        </button>
-
-
-        <button
-          id="saveGroupBtn"
-          class="group-save-btn"
-          type="button"
-        >
-          Создать
-        </button>
-
-
+        <button id="cancelGroupBtn" class="group-cancel-btn" type="button">Отмена</button>
+        <button id="saveGroupBtn" class="group-save-btn" type="button">Создать</button>
       </div>
-
     </div>
-
   </div>
 
-
-  <!-- ========================================= -->
-  <!-- МОДАЛКА НАЗНАЧЕНИЯ СМЕНЫ -->
-  <!-- ========================================= -->
-
-  <div
-    class="modal-overlay"
-    id="shiftModalOverlay"
-  >
-
+  <div class="modal-overlay" id="shiftModalOverlay">
     <div class="shift-modal-card">
-
-
-      <!-- Заголовок -->
-
-      <div
-        class="modal-title"
-        id="shiftModalTitle"
-      >
-        Назначить смену
-      </div>
-
-
-      <!-- 98 -->
-
-      <button
-        class="shift-opt-btn opt-98"
-        id="btnShift98"
-        type="button"
-      >
-        98 Отделение 🟦
-      </button>
-
-
-      <!-- 163 -->
-
-      <button
-        class="shift-opt-btn opt-163"
-        id="btnShift163"
-        type="button"
-      >
-        163 Отделение 🟨
-      </button>
-
-
-      <!-- ВХ -->
-
-      <button
-        class="shift-opt-btn opt-vh"
-        id="btnShiftVh"
-        type="button"
-      >
-        Выходной (ВХ) 🟩
-      </button>
-
-
-      <!-- Сброс -->
-
-      <button
-        class="shift-opt-btn opt-reset"
-        id="btnShiftReset"
-        type="button"
-      >
-        Сбросить день ✕
-      </button>
-
-
+      <div class="modal-title" id="shiftModalTitle">Назначить смену</div>
+      <button class="shift-opt-btn opt-98" id="btnShift98" type="button">98 Отделение 🟦</button>
+      <button class="shift-opt-btn opt-163" id="btnShift163" type="button">163 Отделение 🟨</button>
+      <button class="shift-opt-btn opt-vh" id="btnShiftVh" type="button">Выходной (ВХ) 🟩</button>
+      <button class="shift-opt-btn opt-reset" id="btnShiftReset" type="button">Сбросить день ✕</button>
     </div>
-
   </div>
 
-
-  <!-- ========================================= -->
-  <!-- JAVASCRIPT -->
-  <!-- ========================================= -->
-
-  <script
-    type="module"
-    src="script.js"
-  ></script>
-
-
+  <script type="module" src="script.js"></script>
 </body>
 </html>
