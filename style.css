@@ -1885,3 +1885,189 @@ h2 {
   position: relative;
   z-index: 1;
 }
+
+
+/* ==========================================
+   🍂 ОСЕННЯЯ АТМОСФЕРА
+   ========================================== */
+
+/* Слой падающих листьев */
+body::before,
+body::after {
+  content: "🍂";
+  position: fixed;
+  top: -60px;
+  left: 0;
+  z-index: 50;
+  pointer-events: none;
+  white-space: pre;
+  font-size: 25px;
+  opacity: 0.75;
+  will-change: transform;
+}
+
+/* Первый поток листьев */
+body::before {
+  content: "🍂";
+  text-shadow:
+    8vw 12vh 0 #e99b36,
+    19vw 35vh 0 #d97706,
+    31vw 5vh 0 #eab308,
+    44vw 55vh 0 #c66b24,
+    57vw 20vh 0 #e99b36,
+    68vw 70vh 0 #eab308,
+    79vw 30vh 0 #d97706,
+    91vw 60vh 0 #e99b36,
+    97vw 10vh 0 #c66b24;
+
+  animation: autumnFall 17s linear infinite;
+}
+
+/* Второй поток листьев */
+body::after {
+  content: "🍁";
+  font-size: 20px;
+  opacity: 0.55;
+
+  text-shadow:
+    14vw 25vh 0 #eab308,
+    27vw 60vh 0 #c66b24,
+    39vw 15vh 0 #d97706,
+    51vw 45vh 0 #e99b36,
+    63vw 5vh 0 #c66b24,
+    75vw 55vh 0 #eab308,
+    87vw 18vh 0 #d97706,
+    96vw 75vh 0 #e99b36;
+
+  animation: autumnFall 24s linear infinite;
+  animation-delay: -10s;
+}
+
+/* Падение и вращение */
+@keyframes autumnFall {
+  0% {
+    transform:
+      translate3d(0, -10vh, 0)
+      rotate(0deg);
+  }
+
+  25% {
+    transform:
+      translate3d(35px, 25vh, 0)
+      rotate(100deg);
+  }
+
+  50% {
+    transform:
+      translate3d(-20px, 55vh, 0)
+      rotate(220deg);
+  }
+
+  75% {
+    transform:
+      translate3d(30px, 85vh, 0)
+      rotate(320deg);
+  }
+
+  100% {
+    transform:
+      translate3d(-15px, 115vh, 0)
+      rotate(450deg);
+  }
+}
+
+
+/* ==========================================
+   🍁 ОСЕННИЙ ФУТЕР
+   ========================================== */
+
+.love {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fde68a,
+      #fcd78b,
+      #f5c46b
+    );
+
+  border: 2px dashed #d97706;
+
+  box-shadow:
+    0 3px 8px rgba(146, 64, 14, 0.12),
+    inset 0 0 12px rgba(217, 119, 6, 0.12);
+}
+
+/* Листья по краям футера */
+.love::before,
+.love::after {
+  position: absolute;
+  bottom: -5px;
+  pointer-events: none;
+  z-index: 0;
+  font-size: 23px;
+  opacity: 0.85;
+  line-height: 1;
+}
+
+.love::before {
+  content: "🍂 🍁";
+  left: 5px;
+  transform: rotate(-12deg);
+}
+
+.love::after {
+  content: "🍁 🍂";
+  right: 5px;
+  transform: rotate(12deg);
+}
+
+/* Текст поверх декора */
+.love span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================
+   🍂 ОСЕННИЕ АКЦЕНТЫ
+   ========================================== */
+
+/* Немного теплее заголовки */
+h2 {
+  border-bottom-color: #d99a37;
+}
+
+/* Кнопки */
+.add-group-btn,
+.input-row button,
+.cal-btn {
+  background: #a65d16;
+}
+
+.add-group-btn:active,
+.input-row button:active {
+  background: #854d0e;
+}
+
+/* Счётчики */
+.badge {
+  background: #b96b1c;
+}
+
+/* Прокрутка */
+#taskGroupsView::-webkit-scrollbar-thumb,
+.task-list-scroll::-webkit-scrollbar-thumb,
+.shopping-list-scroll::-webkit-scrollbar-thumb {
+  background: #d19a43;
+}
+
+/* Уважение к настройке уменьшения анимации */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    animation: none;
+  }
+}
+
