@@ -2136,3 +2136,35 @@ body {
     animation: none;
   }
 }
+
+/* Перенос гирлянды над подписью */
+.notebook-wrapper::before,
+.notebook-wrapper::after {
+    display: none !important;
+}
+
+.wrapper {
+    position: relative;
+}
+
+/* Новая гирлянда */
+.wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(420px, 90%);
+    height: 45px;
+    z-index: 100;
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle, #ffdf70 0 3px, transparent 5px) 0 18px / 55px 35px repeat-x,
+        radial-gradient(circle, #ff6b8a 0 3px, transparent 5px) 27px 25px / 55px 35px repeat-x,
+        radial-gradient(circle, #9be7ff 0 3px, transparent 5px) 13px 38px / 55px 35px repeat-x;
+
+    filter: drop-shadow(0 0 5px #ffd76a);
+    animation: garlandBlink 1.5s infinite alternate;
+}
+
